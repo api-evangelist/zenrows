@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-schema/zenrows-scrape-response-schema.json",
+  "title": "ZenRows Universal Scraper API Response",
+  "description": "JSON envelope returned by the ZenRows Universal Scraper API when json_response, autoparse, css_extractor, or outputs is enabled.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Final URL of the page after redirects (mirrors the Zr-Final-Url response header)."
+    },
+    "html": {
+      "type": "string",
+      "description": "Rendered HTML content of the page."
+    },
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP status code returned by the target site."
+    },
+    "headers": {
+      "type": "object",
+      "description": "HTTP response headers returned by the target site.",
+      "additionalProperties": { "type": "string" }
+    },
+    "cookies": {
+      "type": "array",
+      "description": "Cookies set by the target site during the scrape.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "string" },
+          "domain": { "type": "string" },
+          "path": { "type": "string" },
+          "expires": { "type": "string" },
+          "httpOnly": { "type": "boolean" },
+          "secure": { "type": "boolean" }
+        }
+      }
+    },
+    "xhr": {
+      "type": "array",
+      "description": "Network requests captured during rendering when json_response is enabled.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "method": { "type": "string" },
+          "status": { "type": "integer" },
+          "request_headers": { "type": "object", "additionalProperties": { "type": "string" } },
+          "response_headers": { "type": "object", "additionalProperties": { "type": "string" } },
+          "body": { "type": "string" }
+        }
+      }
+    },
+    "emails": {
+      "type": "array",
+      "description": "Email addresses discovered on the page (when emails is requested via outputs).",
+      "items": { "type": "string" }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "description": "Phone numbers discovered on the page (when phone_numbers is requested via outputs).",
+      "items": { "type": "string" }
+    },
+    "links": {
+      "type": "array",
+      "description": "Hyperlinks discovered on the page (when links is requested via outputs).",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "images": {
+      "type": "array",
+      "description": "Image URLs discovered on the page (when images is requested via outputs).",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "autoparse": {
+      "type": "object",
+      "description": "Structured fields produced by the autoparse extractor (shape varies by target site).",
+      "additionalProperties": true
+    },
+    "css_extractor": {
+      "type": "object",
+      "description": "Field map populated from the user-provided css_extractor selectors.",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "zenrows": "https://api-evangelist.github.io/zenrows/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "ScrapeRequest": {
+      "@id": "zenrows:ScrapeRequest",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "A request submitted to the ZenRows Universal Scraper API."
+    },
+    "ScrapeResponse": {
+      "@id": "zenrows:ScrapeResponse",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The response payload returned for a ZenRows scrape request."
+    },
+    "Screenshot": {
+      "@id": "zenrows:Screenshot",
+      "@type": "schema:ImageObject",
+      "rdfs:comment": "A screenshot image captured from a web page by ZenRows."
+    },
+    "BrowserSession": {
+      "@id": "zenrows:BrowserSession",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "A ZenRows Scraping Browser session opened over WebSocket via Playwright, Puppeteer, or CDP."
+    },
+    "ResidentialProxy": {
+      "@id": "zenrows:ResidentialProxy",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "A ZenRows residential proxy egress, identified by country/region and TTL-based stickiness."
+    },
+
+    "url": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    },
+    "finalUrl": {
+      "@id": "zenrows:finalUrl",
+      "@type": "xsd:anyURI"
+    },
+    "html": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "statusCode": {
+      "@id": "zenrows:httpStatusCode",
+      "@type": "xsd:integer"
+    },
+    "jsRender": {
+      "@id": "zenrows:jsRender",
+      "@type": "xsd:boolean"
+    },
+    "premiumProxy": {
+      "@id": "zenrows:premiumProxy",
+      "@type": "xsd:boolean"
+    },
+    "proxyCountry": {
+      "@id": "zenrows:proxyCountry",
+      "@type": "xsd:string"
+    },
+    "stealthMode": {
+      "@id": "zenrows:stealthMode",
+      "@type": "xsd:string"
+    },
+    "sessionId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:integer"
+    },
+    "sessionTtl": {
+      "@id": "zenrows:sessionTtl",
+      "@type": "xsd:integer"
+    },
+    "requestCost": {
+      "@id": "zenrows:requestCost",
+      "@type": "xsd:decimal"
+    },
+    "requestId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "concurrencyLimit": {
+      "@id": "zenrows:concurrencyLimit",
+      "@type": "xsd:integer"
+    },
+    "concurrencyRemaining": {
+      "@id": "zenrows:concurrencyRemaining",
+      "@type": "xsd:integer"
+    }
+  }
+}

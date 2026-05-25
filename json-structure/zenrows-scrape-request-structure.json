@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-structure/zenrows-scrape-request-structure.json",
+  "title": "ZenRows Universal Scraper API Request",
+  "description": "Structural documentation of the query parameters accepted by GET https://api.zenrows.com/v1/. Used to drive request builders, dashboards, and Naftiko capability inputs.",
+  "type": "object",
+  "required": ["apikey", "url"],
+  "properties": {
+    "apikey": {
+      "type": "string",
+      "description": "ZenRows API key."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Target URL to scrape."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["auto"],
+      "description": "Set to auto to enable Adaptive Stealth Mode anti-bot bypass."
+    },
+    "js_render": {
+      "type": "boolean",
+      "default": false,
+      "description": "Render the page in a real browser before returning content."
+    },
+    "premium_proxy": {
+      "type": "boolean",
+      "default": false,
+      "description": "Route the request through the residential proxy pool."
+    },
+    "proxy_country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation."
+    },
+    "custom_headers": {
+      "type": "boolean",
+      "default": false,
+      "description": "Forward custom HTTP headers from the request to the target site."
+    },
+    "session_id": {
+      "type": "integer",
+      "description": "Pin the same proxy IP across requests for up to 10 minutes."
+    },
+    "js_instructions": {
+      "type": "string",
+      "description": "Base64-encoded list of browser instructions to execute after page load."
+    },
+    "wait": {
+      "type": "integer",
+      "description": "Fixed delay in milliseconds after page load before returning the response."
+    },
+    "wait_for": {
+      "type": "string",
+      "description": "CSS selector to wait for before returning the response."
+    },
+    "block_resources": {
+      "type": "string",
+      "description": "Comma-separated resource types to block during rendering (image, stylesheet, font, media, etc.)."
+    },
+    "css_extractor": {
+      "type": "string",
+      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction."
+    },
+    "autoparse": {
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically parse the page into structured JSON via ZenRows' built-in extractors."
+    },
+    "json_response": {
+      "type": "boolean",
+      "default": false,
+      "description": "Return the response wrapped in JSON, including network requests and metadata."
+    },
+    "response_type": {
+      "type": "string",
+      "enum": ["markdown", "plaintext", "pdf"],
+      "description": "Convert the rendered response into another format."
+    },
+    "screenshot": {
+      "type": "boolean",
+      "default": false,
+      "description": "Capture an above-the-fold screenshot of the page."
+    },
+    "screenshot_fullpage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Capture a full-page screenshot of the page."
+    },
+    "screenshot_selector": {
+      "type": "string",
+      "description": "CSS selector to scope the screenshot to a single element."
+    },
+    "screenshot_format": {
+      "type": "string",
+      "enum": ["png", "jpeg"],
+      "default": "png",
+      "description": "Output format for screenshot bytes."
+    },
+    "screenshot_quality": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "JPEG quality (1-100), used with screenshot_format=jpeg."
+    },
+    "outputs": {
+      "type": "string",
+      "description": "Comma-separated structured outputs to extract (e.g. emails,phone_numbers,links,images)."
+    },
+    "original_status": {
+      "type": "boolean",
+      "default": false,
+      "description": "Return the target site's original HTTP status code rather than ZenRows' normalized code."
+    },
+    "allowed_status_codes": {
+      "type": "string",
+      "description": "Comma-separated HTTP status codes for which content should still be returned."
+    }
+  }
+}

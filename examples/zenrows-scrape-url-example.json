@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.zenrows.com/v1/",
+    "query": {
+      "apikey": "YOUR_ZENROWS_API_KEY",
+      "url": "https://www.example.com/product/abc-123",
+      "js_render": true,
+      "premium_proxy": true,
+      "proxy_country": "es",
+      "mode": "auto",
+      "wait_for": "#product-price",
+      "css_extractor": "{\"title\":\"h1.product-title\",\"price\":\".product-price\",\"sku\":\"[data-sku]\"}",
+      "json_response": true
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Concurrency-Limit": "20",
+      "Concurrency-Remaining": "19",
+      "X-Request-Cost": "25",
+      "X-Request-Id": "01J5W7HX5ZNAYG7C8C3K2J5VN3",
+      "Zr-Final-Url": "https://www.example.com/product/abc-123"
+    },
+    "body": {
+      "url": "https://www.example.com/product/abc-123",
+      "status_code": 200,
+      "html": "<html>...</html>",
+      "css_extractor": {
+        "title": "Acme Widget Pro",
+        "price": "$29.99",
+        "sku": "ACME-WIDGET-PRO-001"
+      },
+      "xhr": [
+        {
+          "url": "https://www.example.com/api/inventory/abc-123",
+          "method": "GET",
+          "status": 200
+        }
+      ]
+    }
+  }
+}

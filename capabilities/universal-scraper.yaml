@@ -1,0 +1,284 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ZenRows Universal Scraper API
+  description: 'ZenRows Universal Scraper API capability. 2 operations against api.zenrows.com/v1
+    covering GET and POST scrape calls with anti-bot bypass, residential proxies, JS rendering,
+    CSS/AI extraction, screenshots, and markdown/PDF/JSON output. Self-contained Naftiko capability
+    covering the ZenRows core scrape surface.'
+  tags:
+    - ZenRows
+    - Web Scraping
+    - Anti-Bot
+    - Proxies
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      ZENROWS_API_KEY: ZENROWS_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: universal-scraper
+      baseUri: https://api.zenrows.com/v1
+      description: ZenRows Universal Scraper API. Self-contained, no shared references.
+      resources:
+        - name: scrape
+          path: /
+          operations:
+            - name: scrapeurl
+              method: GET
+              description: Scrape a URL
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: apikey
+                  in: query
+                  type: string
+                  description: ZenRows API key
+                  required: true
+                - name: url
+                  in: query
+                  type: string
+                  description: Target URL to scrape
+                  required: true
+                - name: mode
+                  in: query
+                  type: string
+                  description: Set to auto for Adaptive Stealth Mode
+                - name: js_render
+                  in: query
+                  type: boolean
+                  description: Render the page in a real browser
+                - name: premium_proxy
+                  in: query
+                  type: boolean
+                  description: Route the request through the residential proxy pool
+                - name: proxy_country
+                  in: query
+                  type: string
+                  description: ISO 3166-1 alpha-2 country code for proxy geolocation
+                - name: custom_headers
+                  in: query
+                  type: boolean
+                  description: Forward custom HTTP headers
+                - name: session_id
+                  in: query
+                  type: integer
+                  description: Pin the same proxy IP across requests for up to 10 minutes
+                - name: js_instructions
+                  in: query
+                  type: string
+                  description: Base64-encoded list of browser instructions
+                - name: wait
+                  in: query
+                  type: integer
+                  description: Fixed delay in milliseconds after page load
+                - name: wait_for
+                  in: query
+                  type: string
+                  description: CSS selector to wait for before returning the response
+                - name: block_resources
+                  in: query
+                  type: string
+                  description: Comma-separated resource types to block
+                - name: css_extractor
+                  in: query
+                  type: string
+                  description: URL-encoded JSON object mapping fields to CSS selectors
+                - name: autoparse
+                  in: query
+                  type: boolean
+                  description: Auto-parse the page into structured JSON
+                - name: json_response
+                  in: query
+                  type: boolean
+                  description: Return the response wrapped in JSON with network capture
+                - name: response_type
+                  in: query
+                  type: string
+                  description: Convert output to markdown, plaintext, or pdf
+                - name: screenshot
+                  in: query
+                  type: boolean
+                  description: Capture an above-the-fold screenshot
+                - name: screenshot_fullpage
+                  in: query
+                  type: boolean
+                  description: Capture a full-page screenshot
+                - name: screenshot_selector
+                  in: query
+                  type: string
+                  description: CSS selector to scope the screenshot
+                - name: screenshot_format
+                  in: query
+                  type: string
+                  description: Screenshot format (png or jpeg)
+                - name: screenshot_quality
+                  in: query
+                  type: integer
+                  description: JPEG screenshot quality 1-100
+                - name: outputs
+                  in: query
+                  type: string
+                  description: Comma-separated structured outputs (emails, phone_numbers, links, images)
+                - name: original_status
+                  in: query
+                  type: boolean
+                  description: Return target site's original HTTP status code
+                - name: allowed_status_codes
+                  in: query
+                  type: string
+                  description: Status codes for which content should still be returned
+            - name: scrapeurlpost
+              method: POST
+              description: Scrape a URL With a POST Body
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: apikey
+                  in: query
+                  type: string
+                  description: ZenRows API key
+                  required: true
+                - name: url
+                  in: query
+                  type: string
+                  description: Target URL to scrape
+                  required: true
+                - name: js_render
+                  in: query
+                  type: boolean
+                  description: Render the page in a real browser
+                - name: premium_proxy
+                  in: query
+                  type: boolean
+                  description: Route the request through the residential proxy pool
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body forwarded to the target URL
+                  required: true
+      authentication:
+        type: apikey
+        key: apikey
+        value: '{{env.ZENROWS_API_KEY}}'
+        placement: query
+  exposes:
+    - type: rest
+      namespace: universal-scraper-rest
+      port: 8080
+      description: REST adapter for the ZenRows Universal Scraper API. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/scrape
+          name: scrape
+          description: REST surface for ZenRows scrape.
+          operations:
+            - method: GET
+              name: scrapeurl
+              description: Scrape a URL
+              call: universal-scraper.scrapeurl
+              with:
+                apikey: rest.apikey
+                url: rest.url
+                mode: rest.mode
+                js_render: rest.js_render
+                premium_proxy: rest.premium_proxy
+                proxy_country: rest.proxy_country
+                custom_headers: rest.custom_headers
+                session_id: rest.session_id
+                js_instructions: rest.js_instructions
+                wait: rest.wait
+                wait_for: rest.wait_for
+                block_resources: rest.block_resources
+                css_extractor: rest.css_extractor
+                autoparse: rest.autoparse
+                json_response: rest.json_response
+                response_type: rest.response_type
+                screenshot: rest.screenshot
+                screenshot_fullpage: rest.screenshot_fullpage
+                screenshot_selector: rest.screenshot_selector
+                screenshot_format: rest.screenshot_format
+                screenshot_quality: rest.screenshot_quality
+                outputs: rest.outputs
+                original_status: rest.original_status
+                allowed_status_codes: rest.allowed_status_codes
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: scrapeurlpost
+              description: Scrape a URL With a POST Body
+              call: universal-scraper.scrapeurlpost
+              with:
+                apikey: rest.apikey
+                url: rest.url
+                js_render: rest.js_render
+                premium_proxy: rest.premium_proxy
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: universal-scraper-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for the ZenRows Universal Scraper API. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: scrape-url
+          description: Scrape a URL via the ZenRows Universal Scraper API.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: universal-scraper.scrapeurl
+          with:
+            apikey: tools.apikey
+            url: tools.url
+            mode: tools.mode
+            js_render: tools.js_render
+            premium_proxy: tools.premium_proxy
+            proxy_country: tools.proxy_country
+            custom_headers: tools.custom_headers
+            session_id: tools.session_id
+            js_instructions: tools.js_instructions
+            wait: tools.wait
+            wait_for: tools.wait_for
+            block_resources: tools.block_resources
+            css_extractor: tools.css_extractor
+            autoparse: tools.autoparse
+            json_response: tools.json_response
+            response_type: tools.response_type
+            screenshot: tools.screenshot
+            screenshot_fullpage: tools.screenshot_fullpage
+            screenshot_selector: tools.screenshot_selector
+            screenshot_format: tools.screenshot_format
+            screenshot_quality: tools.screenshot_quality
+            outputs: tools.outputs
+            original_status: tools.original_status
+            allowed_status_codes: tools.allowed_status_codes
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: scrape-url-post
+          description: Scrape a URL with a POST body via the ZenRows Universal Scraper API.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: universal-scraper.scrapeurlpost
+          with:
+            apikey: tools.apikey
+            url: tools.url
+            js_render: tools.js_render
+            premium_proxy: tools.premium_proxy
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

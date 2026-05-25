@@ -1,0 +1,457 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ZenRows
+providerId: zenrows
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Web Scraping
+  - Data Extraction
+  - Proxies
+  - Browser Automation
+description: ZenRows sells a subscription that bundles four request budgets — Basic, JS Rendering,
+  Premium Proxy, and Protected sites — together with a concurrency cap and a max-download size.
+  All four products (Universal Scraper API, Scraping Browser, Residential Proxies, Scraper APIs)
+  share the same account and credit pool, with the Scraping Browser billed additionally per
+  bandwidth-GB and session-hour. Tiers escalate from a $1 free trial through six paid tiers up
+  to custom enterprise contracts above $2,999.99/month.
+sources:
+  - https://www.zenrows.com/pricing
+  - https://docs.zenrows.com/first-steps/pricing
+plans:
+  - id: zenrows-free-trial
+    name: Free Trial
+    type: freemium
+    description: $1 usage allowance with Business-tier features; 5 concurrent requests; 10 MB max download.
+    entries:
+      - label: Trial Credit
+        name: trial_credit
+        type: quota
+        metric: usd
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 5
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Max Download
+        name: max_download
+        type: quota
+        metric: megabytes_per_response
+        limit: 10
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: All ZenRows products
+      - name: Business-tier features
+  - id: zenrows-developer
+    name: Developer
+    type: subscription
+    description: $69.99/month with 250K basic / 50K JS rendering / 25K premium proxy / 10K protected requests; 20 concurrency; 5 MB max download.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$69.99'
+        userMultiplied: false
+      - label: Basic Requests
+        name: basic_requests
+        type: quota
+        metric: requests
+        limit: 250000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: JS Rendering Requests
+        name: js_render_requests
+        type: quota
+        metric: requests
+        limit: 50000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Premium Proxy Requests
+        name: premium_proxy_requests
+        type: quota
+        metric: requests
+        limit: 25000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Protected Requests
+        name: protected_requests
+        type: quota
+        metric: requests
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 20
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Max Download
+        name: max_download
+        type: quota
+        metric: megabytes_per_response
+        limit: 5
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: AI support
+      - name: Standard analytics
+      - name: Alerts & notifications
+  - id: zenrows-startup
+    name: Startup
+    type: subscription
+    description: $129.99/month with 1M basic / 200K JS rendering / 100K premium proxy / 40K protected requests; 50 concurrency; 10 MB max download.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$129.99'
+        userMultiplied: false
+      - label: Basic Requests
+        name: basic_requests
+        type: quota
+        metric: requests
+        limit: 1000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: JS Rendering Requests
+        name: js_render_requests
+        type: quota
+        metric: requests
+        limit: 200000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Premium Proxy Requests
+        name: premium_proxy_requests
+        type: quota
+        metric: requests
+        limit: 100000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Protected Requests
+        name: protected_requests
+        type: quota
+        metric: requests
+        limit: 40000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 50
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Max Download
+        name: max_download
+        type: quota
+        metric: megabytes_per_response
+        limit: 10
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Developer features
+      - name: Human chat support
+  - id: zenrows-business
+    name: Business
+    type: subscription
+    description: $299.99/month with 3M basic / 600K JS rendering / 300K premium proxy / 120K protected requests; 100 concurrency; 10 MB max download.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$299.99'
+        userMultiplied: false
+      - label: Basic Requests
+        name: basic_requests
+        type: quota
+        metric: requests
+        limit: 3000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: JS Rendering Requests
+        name: js_render_requests
+        type: quota
+        metric: requests
+        limit: 600000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Premium Proxy Requests
+        name: premium_proxy_requests
+        type: quota
+        metric: requests
+        limit: 300000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Protected Requests
+        name: protected_requests
+        type: quota
+        metric: requests
+        limit: 120000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 100
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Max Download
+        name: max_download
+        type: quota
+        metric: megabytes_per_response
+        limit: 10
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Startup features
+      - name: Advanced analytics
+  - id: zenrows-business-500
+    name: Business 500
+    type: subscription
+    description: $499.99/month with 6.2M basic / 1.2M JS rendering / 620K premium proxy / 240K protected requests; 150 concurrency; 20 MB max download; priority support.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$499.99'
+        userMultiplied: false
+      - label: Basic Requests
+        name: basic_requests
+        type: quota
+        metric: requests
+        limit: 6200000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: JS Rendering Requests
+        name: js_render_requests
+        type: quota
+        metric: requests
+        limit: 1200000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Premium Proxy Requests
+        name: premium_proxy_requests
+        type: quota
+        metric: requests
+        limit: 620000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Protected Requests
+        name: protected_requests
+        type: quota
+        metric: requests
+        limit: 240000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 150
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Max Download
+        name: max_download
+        type: quota
+        metric: megabytes_per_response
+        limit: 20
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Business features
+      - name: Priority support
+  - id: zenrows-business-1k-3k
+    name: Business 1K–3K
+    type: subscription
+    description: Progressive Business tiers from $999.99 to $2,999.99/month with scaled request budgets and up to 400 concurrent requests.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$999.99–$2,999.99'
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: 400
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: All ZenRows products
+      - name: Dedicated account manager (higher tiers)
+  - id: zenrows-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom enterprise contracts above $2,999/month with negotiated request budgets, concurrency, SLAs, and Scraping Browser bandwidth pricing as low as $2.80/GB.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'custom'
+        userMultiplied: false
+      - label: Concurrency
+        name: concurrency
+        type: quota
+        metric: concurrent_requests
+        limit: -1
+        geo: global
+        unit: 1
+        price: negotiated
+        userMultiplied: false
+      - label: Scraping Browser Bandwidth
+        name: scraping_browser_bandwidth
+        type: metered
+        metric: gigabytes
+        limit: -1
+        geo: global
+        unit: 1
+        price: '$2.80'
+        userMultiplied: false
+    elements:
+      - name: Custom SLAs
+      - name: Dedicated account manager
+      - name: Enterprise scraping-browser bandwidth rate
+  - id: zenrows-scraping-browser-addon
+    name: Scraping Browser Add-on
+    type: metered
+    description: Scraping Browser is metered per GB of bandwidth and per session-hour on top of the plan. Billing increments are 30 seconds.
+    entries:
+      - label: Bandwidth
+        name: scraping_browser_bandwidth
+        type: metered
+        metric: gigabytes
+        limit: -1
+        geo: global
+        unit: 1
+        price: '$5.50'
+        userMultiplied: false
+      - label: Session Time
+        name: scraping_browser_session_time
+        type: metered
+        metric: hours
+        limit: -1
+        geo: global
+        unit: 1
+        price: '$0.09'
+        userMultiplied: false
+    elements:
+      - name: Scraping Browser
+      - name: 30-second billing increments
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

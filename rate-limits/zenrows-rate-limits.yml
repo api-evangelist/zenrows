@@ -1,0 +1,116 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ZenRows
+providerId: zenrows
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Web Scraping
+  - Rate Limiting
+  - Concurrency
+description: ZenRows throttles by plan-level concurrency caps and by per-feature request budgets
+  (Basic, JS Rendering, Premium Proxy, Protected). Quota exhaustion and concurrency overflow are
+  both returned as 429 with distinct ZenRows error codes (AUTH008 vs AUTH006). Every successful
+  response surfaces the current concurrency state in dedicated response headers, and 402 responses
+  signal budget exhaustion before traffic is throttled. There is no documented per-second request
+  ceiling beyond the concurrency cap.
+sources:
+  - https://www.zenrows.com/pricing
+  - https://docs.zenrows.com/first-steps/pricing
+  - https://docs.zenrows.com/api-error-codes
+headers:
+  concurrencyLimit: Concurrency-Limit
+  concurrencyRemaining: Concurrency-Remaining
+  requestCost: X-Request-Cost
+  requestId: X-Request-Id
+  finalUrl: Zr-Final-Url
+responseCodes:
+  concurrencyExceeded: 429
+  rateLimited: 429
+  quotaExceeded: 402
+  featureNotInPlan: 402
+  subscriptionInactive: 402
+errorCodes:
+  AUTH004: Plan usage exceeded
+  AUTH006: Concurrency limit exceeded
+  AUTH008: Rate limit exceeded
+  AUTH010: Feature not included in plan
+  AUTH011: No active subscription found
+  AUTH012: Subscription does not allow product
+limits:
+  - name: Free Trial concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 5
+    notes: Applies during the $1 trial.
+  - name: Developer concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 20
+    notes: Applies to the $69.99/mo Developer plan.
+  - name: Startup concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 50
+    notes: Applies to the $129.99/mo Startup plan.
+  - name: Business concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 100
+    notes: Applies to the $299.99/mo Business plan.
+  - name: Business 500 concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 150
+    notes: Applies to the $499.99/mo Business 500 plan.
+  - name: Business 1K–3K concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: 400
+    notes: Applies to the Business 1K through Business 3K plans (up to 400 concurrent requests).
+  - name: Enterprise concurrency
+    scope: account
+    metric: concurrent_requests
+    limit: negotiated
+    notes: Custom enterprise contracts negotiate concurrency above 400.
+  - name: Basic requests quota
+    scope: account
+    metric: requests
+    limit: plan-dependent
+    notes: Monthly budget for plain requests (no js_render, no premium_proxy).
+  - name: JS Rendering requests quota
+    scope: account
+    metric: requests
+    limit: plan-dependent
+    notes: Monthly budget for requests with js_render=true.
+  - name: Premium Proxy requests quota
+    scope: account
+    metric: requests
+    limit: plan-dependent
+    notes: Monthly budget for requests with premium_proxy=true.
+  - name: Protected requests quota
+    scope: account
+    metric: requests
+    limit: plan-dependent
+    notes: Monthly budget for requests against anti-bot-protected targets (mode=auto / Adaptive Stealth).
+  - name: Max download size
+    scope: per-response
+    metric: megabytes
+    limit: 5-20
+    notes: Per-response size cap that scales with the plan (5 MB on Developer, 10 MB on Startup/Business/Trial, 20 MB on Business 500+).
+policies:
+  - name: Concurrency throttling
+    description: Excess concurrent requests are rejected with 429 + AUTH006 rather than queued. Clients must monitor Concurrency-Remaining and back off.
+  - name: Quota exhaustion
+    description: When any of the four request budgets is depleted, requests return 402 + AUTH004. Quotas reset monthly.
+  - name: Feature gating
+    description: Calling a feature not included in the plan returns 402 + AUTH010 (e.g. premium_proxy on a no-premium plan).
+  - name: Domain blocklist
+    description: Certain domains are forbidden entirely (REQS001 / 400). Forbidden-sites policy is published separately.
+  - name: Error-rate IP block
+    description: BLK0001 (403) blocks a caller IP after sustained high error rates.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

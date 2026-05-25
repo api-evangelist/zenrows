@@ -1,0 +1,95 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: ZenRows
+providerId: zenrows
+created: '2026-05-25'
+modified: '2026-05-25'
+description: Domain vocabulary for the ZenRows web scraping platform, covering the Universal
+  Scraper API, Scraping Browser, Residential Proxies, vertical Scraper APIs, and MCP surface.
+tags:
+  - Web Scraping
+  - Data Extraction
+  - Anti-Bot
+  - Proxies
+  - Browser Automation
+  - MCP
+concepts:
+  - name: Universal Scraper API
+    description: HTTP scrape endpoint at api.zenrows.com/v1/ that fetches any URL.
+  - name: Scraping Browser
+    description: Cloud Playwright/Puppeteer/CDP browser exposed over WebSocket.
+  - name: Residential Proxies
+    description: HTTP/SOCKS5 residential proxy gateway billed by bandwidth with sticky sessions.
+  - name: Scraper APIs
+    description: Vertical structured-data scrapers for Amazon, Google, Walmart, Zillow, Idealista.
+  - name: Adaptive Stealth Mode
+    description: ZenRows' anti-bot bypass mode toggled via mode=auto.
+  - name: Premium Proxy
+    description: Routes a Universal Scraper request through the residential pool.
+  - name: Session
+    description: Numeric session_id that pins the same proxy IP for up to 10 minutes.
+  - name: Concurrency
+    description: Plan-scoped maximum of simultaneously open scrape requests.
+  - name: Credits
+    description: Per-request cost surfaced via X-Request-Cost; differentiated by feature mix.
+  - name: Autoparse
+    description: Built-in extractor that returns structured JSON for supported target sites.
+  - name: CSS Extractor
+    description: User-supplied CSS selectors that ZenRows applies server-side to the rendered page.
+  - name: JS Instructions
+    description: Base64-encoded list of browser actions (click, scroll, wait, fill, evaluate).
+  - name: Response Type
+    description: Output format conversion to markdown, plaintext, or PDF.
+  - name: MCP Server
+    description: Official ZenRows MCP server exposing scrape and 30+ browser tools to AI agents.
+operations:
+  - name: Scrape URL
+    description: GET / on the Universal Scraper API.
+  - name: Scrape URL (POST)
+    description: POST / on the Universal Scraper API for sites that require POST.
+  - name: Open Browser Session
+    description: Open a Scraping Browser WebSocket session.
+  - name: Rotate Proxy
+    description: Reuse or rotate a residential proxy via session-ttl headers/parameters.
+parameters:
+  - name: apikey
+  - name: url
+  - name: js_render
+  - name: premium_proxy
+  - name: proxy_country
+  - name: mode
+  - name: session_id
+  - name: wait
+  - name: wait_for
+  - name: block_resources
+  - name: css_extractor
+  - name: autoparse
+  - name: json_response
+  - name: response_type
+  - name: screenshot
+  - name: screenshot_fullpage
+  - name: outputs
+errors:
+  - code: AUTH001
+    description: API key missing.
+  - code: AUTH003
+    description: API key not found.
+  - code: AUTH004
+    description: Plan usage exceeded.
+  - code: AUTH006
+    description: Concurrency limit exceeded.
+  - code: AUTH008
+    description: Rate limit exceeded.
+  - code: REQS001
+    description: Requests to this domain are forbidden.
+  - code: REQS002
+    description: Request requirements unsatisfied (needs js_render or premium_proxy).
+  - code: RESP001
+    description: Could not retrieve content.
+  - code: RESP005
+    description: Response size exceeds plan max download.
+  - code: BLK0001
+    description: IP address blocked for exceeding error rate.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

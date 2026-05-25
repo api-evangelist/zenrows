@@ -1,0 +1,114 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: ZenRows
+providerId: zenrows
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Web Scraping
+  - Data Extraction
+  - FinOps
+  - FOCUS
+description: FOCUS-aligned FinOps shape for ZenRows. The subscription bundles four request budgets
+  (Basic, JS Rendering, Premium Proxy, Protected) plus a max-download size and a concurrency cap.
+  The Scraping Browser product layers metered bandwidth ($/GB) and metered session-time ($/hour,
+  30-second increments) on top of the subscription. All four products share the same account and
+  ZenRows surfaces per-request cost on every response via X-Request-Cost.
+sources:
+  - https://www.zenrows.com/pricing
+  - https://docs.zenrows.com/first-steps/pricing
+  - https://docs.zenrows.com/universal-scraper-api/api-reference
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: ZenRows
+serviceCategory: Web Scraping / Data Extraction
+billingModel:
+  pricingCategory: Subscription + Pay-As-You-Go
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Usage
+focusColumns:
+  ServiceName: ZenRows
+  ServiceCategory: Web Scraping / Data Extraction
+  ProviderName: ZenRows
+  PublisherName: ZenRows
+  InvoiceIssuerName: ZenRows
+  BillingCurrency: USD
+meters:
+  - name: subscription_fee
+    description: Recurring monthly subscription fee (Developer through Enterprise).
+    unit: month
+    aggregation: sum
+    dimensions:
+      - plan
+  - name: basic_requests
+    description: Plain HTTP scrape requests against the Universal Scraper API (no js_render, no premium_proxy).
+    unit: request
+    aggregation: sum
+    dimensions:
+      - product
+      - plan
+  - name: js_render_requests
+    description: Scrape requests with js_render=true rendering through a headless browser.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - product
+      - plan
+  - name: premium_proxy_requests
+    description: Scrape requests routed through the residential proxy pool (premium_proxy=true).
+    unit: request
+    aggregation: sum
+    dimensions:
+      - product
+      - plan
+      - proxy_country
+  - name: protected_requests
+    description: Scrape requests against anti-bot-protected targets (mode=auto / Adaptive Stealth).
+    unit: request
+    aggregation: sum
+    dimensions:
+      - product
+      - plan
+  - name: scraping_browser_bandwidth
+    description: Bandwidth consumed by Scraping Browser sessions, billed per GB.
+    unit: gigabyte
+    aggregation: sum
+    dimensions:
+      - product
+      - plan
+  - name: scraping_browser_session_time
+    description: Session duration of Scraping Browser sessions, billed per hour in 30-second increments.
+    unit: hour
+    aggregation: sum
+    dimensions:
+      - product
+      - session_id
+principles:
+  - name: Visibility
+    description: Inspect X-Request-Cost on every Universal Scraper response and the ZenRows dashboard's
+      per-product usage charts. Concurrency-Limit and Concurrency-Remaining give live headroom.
+  - name: Allocation
+    description: Use distinct API keys per workload to split request budgets and Scraping Browser bandwidth
+      across teams and environments. Track session_id and proxy_country to attribute Scraping Browser and
+      premium-proxy traffic.
+  - name: Optimization
+    description: Reach for js_render and premium_proxy only when the target site requires them — each
+      consumes a different (more expensive) budget. Cache successful HTML, raise wait_for thresholds
+      instead of fixed wait delays, and block heavy resource types via block_resources to cut Scraping
+      Browser bandwidth.
+  - name: Accountability
+    description: Plan owners are responsible for monitoring all four request budgets and Scraping Browser
+      metered usage. 402 responses (AUTH004) and 429s (AUTH006/AUTH008) signal exhaustion or throttling
+      and must be wired into alerting.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

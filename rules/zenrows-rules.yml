@@ -1,0 +1,65 @@
+extends: spectral:oas
+rules:
+  # ZenRows uses snake_case for its query parameters (apikey, js_render,
+  # premium_proxy, proxy_country, custom_headers, session_id, js_instructions,
+  # wait_for, block_resources, css_extractor, json_response, response_type,
+  # screenshot_fullpage, screenshot_selector, screenshot_format,
+  # screenshot_quality, original_status, allowed_status_codes).
+  zenrows-snake-case-query-parameters:
+    description: ZenRows query parameters must use lower snake_case.
+    message: Query parameter "{{value}}" should be lower snake_case.
+    severity: warn
+    given: $.paths..parameters[?(@.in == 'query')].name
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'
+
+  zenrows-apikey-required:
+    description: Every operation must accept the apikey query parameter.
+    message: ZenRows operations must declare the apikey query parameter.
+    severity: error
+    given: $.paths.*[get,post,put,patch,delete,options,head]
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            parameters:
+              type: array
+              contains:
+                type: object
+                properties:
+                  name: { const: apikey }
+                  in: { const: query }
+                required: [name, in]
+          required: [parameters]
+
+  zenrows-server-base-url:
+    description: Servers should declare https://api.zenrows.com/v1 as the base URL.
+    message: Servers entry should use https://api.zenrows.com/v1.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://api\.zenrows\.com/v1/?$'
+
+  zenrows-operation-title-case-summary:
+    description: Operation summaries should use Title Case.
+    message: '"{{value}}" should use Title Case.'
+    severity: info
+    given: $.paths.*[get,post,put,patch,delete,options,head].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z]'
+
+  zenrows-operation-tag:
+    description: Operations must be tagged.
+    severity: warn
+    given: $.paths.*[get,post,put,patch,delete,options,head]
+    then:
+      field: tags
+      function: truthy
