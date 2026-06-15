@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ZenRows Universal Scraper API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Universal Scraper",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scrape a URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zenrows.com/v1/",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "query",
+                "description": "ZenRows API key for authentication."
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Target URL to scrape (URL-encoded)."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass."
+              },
+              {
+                "name": "js_render",
+                "value": "",
+                "type": "query",
+                "description": "Render the page in a real browser before returning content."
+              },
+              {
+                "name": "premium_proxy",
+                "value": "",
+                "type": "query",
+                "description": "Route the request through the residential proxy pool."
+              },
+              {
+                "name": "proxy_country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code for proxy geolocation."
+              },
+              {
+                "name": "custom_headers",
+                "value": "",
+                "type": "query",
+                "description": "Forward custom HTTP headers from the request to the target site."
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes."
+              },
+              {
+                "name": "js_instructions",
+                "value": "",
+                "type": "query",
+                "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load."
+              },
+              {
+                "name": "wait",
+                "value": "",
+                "type": "query",
+                "description": "Fixed delay in milliseconds after page load before returning the response."
+              },
+              {
+                "name": "wait_for",
+                "value": "",
+                "type": "query",
+                "description": "CSS selector to wait for before returning the response."
+              },
+              {
+                "name": "block_resources",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`)."
+              },
+              {
+                "name": "css_extractor",
+                "value": "",
+                "type": "query",
+                "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction."
+              },
+              {
+                "name": "autoparse",
+                "value": "",
+                "type": "query",
+                "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors."
+              },
+              {
+                "name": "json_response",
+                "value": "",
+                "type": "query",
+                "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "Convert the rendered response into another format."
+              },
+              {
+                "name": "screenshot",
+                "value": "",
+                "type": "query",
+                "description": "Capture an above-the-fold screenshot of the page."
+              },
+              {
+                "name": "screenshot_fullpage",
+                "value": "",
+                "type": "query",
+                "description": "Capture a full-page screenshot of the page."
+              },
+              {
+                "name": "screenshot_selector",
+                "value": "",
+                "type": "query",
+                "description": "CSS selector to scope the screenshot to a single element."
+              },
+              {
+                "name": "screenshot_format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for screenshot bytes."
+              },
+              {
+                "name": "screenshot_quality",
+                "value": "",
+                "type": "query",
+                "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`)."
+              },
+              {
+                "name": "outputs",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`)."
+              },
+              {
+                "name": "original_status",
+                "value": "",
+                "type": "query",
+                "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx."
+              },
+              {
+                "name": "allowed_status_codes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of HTTP status codes for which content should still be returned."
+              }
+            ]
+          },
+          "docs": "Fetch and scrape any URL, optionally rendering JavaScript and routing through ZenRows' anti-bot, premium proxy, or geo-targeted proxy pool. Returns the rendered HTML by default, or a markdown/plaintext/PDF/JSON payload or a screenshot when the corresponding flags are set."
+        },
+        {
+          "info": {
+            "name": "Scrape a URL With a POST Body",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zenrows.com/v1/",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "query",
+                "description": "ZenRows API key for authentication."
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Target URL to scrape."
+              },
+              {
+                "name": "js_render",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "premium_proxy",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Variant of the scrape endpoint that forwards a request body to the target URL, used to scrape pages that only respond to POST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

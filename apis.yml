@@ -1,283 +1,286 @@
 aid: zenrows
 name: ZenRows
-description: 'ZenRows is a Spanish web scraping platform headquartered in Madrid that lets developers
-  collect public web data at scale without managing proxies, browsers, or CAPTCHAs. A single API key
-  unlocks four products against a shared 55M+ residential IP pool across 190+ countries: the Universal
-  Scraper API (HTTP scrape with JS rendering, anti-bot bypass, screenshots, CSS/AI extraction, and
-  PDF/markdown output), the Scraping Browser (cloud Playwright/Puppeteer/CDP browser over WebSocket),
-  Residential Proxies (HTTP/SOCKS5 with sticky sessions and country targeting), and a set of vertical
-  Scraper APIs for Amazon, Google, Walmart, Zillow, and Idealista. ZenRows also ships first-party
-  Python, Node.js, and Go SDKs, a Scrapy middleware, deep integrations across Playwright, Puppeteer,
-  Selenium, Scrapy, LangChain, LlamaIndex, OpenAI Agents SDK, Zapier, n8n, Make, Pipedream, Node-RED,
-  MuleSoft, Clay, and an official MCP server (hosted at https://mcp.zenrows.com/mcp and as @zenrows/mcp
-  on npm) exposing scrape and 30+ browser automation tools to AI agents.'
+description: >-
+  ZenRows is a Spanish web scraping platform headquartered in Madrid that lets developers collect public web data at
+  scale without managing proxies, browsers, or CAPTCHAs. A single API key unlocks four products against a shared 55M+
+  residential IP pool across 190+ countries: the Universal Scraper API (HTTP scrape with JS rendering, anti-bot bypass,
+  screenshots, CSS/AI extraction, and PDF/markdown output), the Scraping Browser (cloud Playwright/Puppeteer/CDP browser
+  over WebSocket), Residential Proxies (HTTP/SOCKS5 with sticky sessions and country targeting), and a set of vertical
+  Scraper APIs for Amazon, Google, Walmart, Zillow, and Idealista. ZenRows also ships first-party Python, Node.js, and
+  Go SDKs, a Scrapy middleware, deep integrations across Playwright, Puppeteer, Selenium, Scrapy, LangChain, LlamaIndex,
+  OpenAI Agents SDK, Zapier, n8n, Make, Pipedream, Node-RED, MuleSoft, Clay, and an official MCP server (hosted at
+  https://mcp.zenrows.com/mcp and as @zenrows/mcp on npm) exposing scrape and 30+ browser automation tools to AI agents.
 type: Provider
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Web Scraping
-- Data Extraction
-- Anti-Bot
-- Proxies
-- Residential Proxies
-- Browser Automation
-- Screenshots
-- CAPTCHA
-- AI
-- MCP
-- Spain
+  - Web Scraping
+  - Data Extraction
+  - Anti-Bot
+  - Proxies
+  - Residential Proxies
+  - Browser Automation
+  - Screenshots
+  - CAPTCHA
+  - AI
+  - MCP
+  - Spain
 created: '2026-05-25'
 modified: '2026-05-25'
 url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: zenrows:universal-scraper-api
-  name: ZenRows Universal Scraper API
-  description: HTTP scraping API at https://api.zenrows.com/v1/ that fetches any URL with optional
-    JavaScript rendering, anti-bot bypass via Adaptive Stealth Mode, premium residential proxies,
-    country-level geo-targeting, session pinning (up to 10 minutes), custom headers, CSS extractors,
-    AI autoparse, wait/wait_for synchronization, JavaScript instructions, full-page or element
-    screenshots (PNG/JPEG), and output conversion to markdown, plaintext, or PDF. Authentication is
-    by apikey query parameter. Response headers expose Concurrency-Limit, Concurrency-Remaining,
-    X-Request-Cost, X-Request-Id, and Zr-Final-Url for cost and observability.
-  humanURL: https://docs.zenrows.com/universal-scraper-api/api-reference
-  tags:
-  - Web Scraping
-  - Anti-Bot
-  - JavaScript Rendering
-  - Screenshots
-  - Data Extraction
-  - AI
-  properties:
+  - aid: zenrows:universal-scraper-api
+    name: ZenRows Universal Scraper API
+    description: >-
+      HTTP scraping API at https://api.zenrows.com/v1/ that fetches any URL with optional JavaScript rendering, anti-bot
+      bypass via Adaptive Stealth Mode, premium residential proxies, country-level geo-targeting, session pinning (up to
+      10 minutes), custom headers, CSS extractors, AI autoparse, wait/wait_for synchronization, JavaScript instructions,
+      full-page or element screenshots (PNG/JPEG), and output conversion to markdown, plaintext, or PDF. Authentication
+      is by apikey query parameter. Response headers expose Concurrency-Limit, Concurrency-Remaining, X-Request-Cost,
+      X-Request-Id, and Zr-Final-Url for cost and observability.
+    humanURL: https://docs.zenrows.com/universal-scraper-api/api-reference
+    tags:
+      - Web Scraping
+      - Anti-Bot
+      - JavaScript Rendering
+      - Screenshots
+      - Data Extraction
+      - AI
+    properties:
+      - type: Documentation
+        url: https://docs.zenrows.com/universal-scraper-api/api-reference
+      - type: Documentation
+        url: https://docs.zenrows.com/universal-scraper-api/first-request
+      - type: SignUp
+        url: https://app.zenrows.com/register
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/openapi/zenrows-universal-scraper-openapi.yml
+      - type: SpectralRules
+        url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/rules/zenrows-rules.yml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-schema/zenrows-scrape-response-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-structure/zenrows-scrape-request-structure.json
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-ld/zenrows-context.jsonld
+  - aid: zenrows:scraping-browser
+    name: ZenRows Scraping Browser
+    description: >-
+      Cloud headless browser exposed over WebSocket at wss://browser.zenrows.com?apikey=KEY, compatible with Playwright,
+      Puppeteer, and the underlying Chrome DevTools Protocol. Each session runs on the ZenRows infrastructure with
+      automatic rotation across 55M+ residential IPs in 190+ countries, country and world-region targeting, configurable
+      session TTL, and 99.9% uptime. Billed per session-hour ($0.09/hr in 30-second increments) plus per-GB bandwidth
+      (from $5.50/GB, discounted to $2.80/GB at Enterprise). Suited to single-page apps, complex user flows, and
+      long-running interactive scraping.
+    humanURL: https://docs.zenrows.com/scraping-browser/introduction
+    tags:
+      - Browser Automation
+      - Playwright
+      - Puppeteer
+      - CDP
+      - Residential Proxies
+      - WebSocket
+    properties:
+      - type: Documentation
+        url: https://docs.zenrows.com/scraping-browser/introduction
+      - type: Documentation
+        url: https://docs.zenrows.com/scraping-browser/scraping-browser-setup
+      - type: Documentation
+        url: https://docs.zenrows.com/scraping-browser/get-started/playwright
+      - type: Documentation
+        url: https://docs.zenrows.com/scraping-browser/get-started/puppeteer
+      - type: FAQ
+        url: https://docs.zenrows.com/scraping-browser/faq
+  - aid: zenrows:residential-proxies
+    name: ZenRows Residential Proxies
+    description: >-
+      HTTP and SOCKS5 residential proxy network with 55M+ IPs across 190+ countries, username/password authentication,
+      country and world-region targeting (e.g. country-es for Spain), and sticky-session TTL configurable from 30
+      seconds up to 1 day. Sold by bandwidth rather than request count; intended as a drop-in proxy for any HTTP client,
+      browser, or scraping framework.
+    humanURL: https://docs.zenrows.com/residential-proxies/introduction
+    tags:
+      - Proxies
+      - Residential Proxies
+      - HTTP
+      - SOCKS5
+      - Geo-Targeting
+    properties:
+      - type: Documentation
+        url: https://docs.zenrows.com/residential-proxies/introduction
+      - type: Documentation
+        url: https://docs.zenrows.com/residential-proxies/residential-proxies-setup
+      - type: Documentation
+        url: https://docs.zenrows.com/residential-proxies/get-started/first-request
+      - type: FAQ
+        url: https://docs.zenrows.com/residential-proxies/faq
+  - aid: zenrows:scraper-apis
+    name: ZenRows Scraper APIs
+    description: >-
+      Vertical, structured-data scraper endpoints for major commerce and real-estate sites, sharing the api.zenrows.com
+      authentication and credit model. Covers Amazon (ASIN lookup, discovery), Google (search results), Walmart
+      (discovery, product information, product reviews), Zillow (discovery, property data), and Idealista (discovery,
+      property data, Spanish real-estate focus). Returns parsed JSON rather than raw HTML, with provider-managed
+      selectors that absorb site-side layout changes.
+    humanURL: https://docs.zenrows.com/scraper-apis/introduction
+    tags:
+      - Web Scraping
+      - Structured Data
+      - E-Commerce
+      - Real Estate
+      - Amazon
+      - Google
+      - Walmart
+      - Zillow
+      - Idealista
+    properties:
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/introduction
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/get-started/amazon-asin
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/get-started/google-search
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/get-started/zillow-property
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/get-started/idealista-property
+      - type: Documentation
+        url: https://docs.zenrows.com/scraper-apis/get-started/walmart-product
+  - aid: zenrows:mcp
+    name: ZenRows MCP Server
+    description: >-
+      Official ZenRows Model Context Protocol server that exposes the scraping platform to AI assistants. Available as a
+      remote hosted server at https://mcp.zenrows.com/mcp with OAuth bearer authentication, or locally via the npm
+      package @zenrows/mcp (npx -y @zenrows/mcp). Ships scrape tools for Markdown/HTML/JSON/plaintext/PDF/screenshots
+      and 30+ browser_* tools covering navigation, clicks, form fills, JavaScript execution, cookies, tabs, and
+      persistent sessions.
+    humanURL: https://docs.zenrows.com/integrations/mcp/mcp-overview
+    tags:
+      - MCP
+      - AI
+      - Agents
+      - LLM
+    properties:
+      - type: Documentation
+        url: https://docs.zenrows.com/integrations/mcp/mcp-overview
+      - type: Documentation
+        url: https://docs.zenrows.com/integrations/mcp/claude-desktop
+      - type: Documentation
+        url: https://docs.zenrows.com/integrations/mcp/claude-code
+      - type: Documentation
+        url: https://docs.zenrows.com/integrations/mcp/cursor
+      - type: Documentation
+        url: https://docs.zenrows.com/integrations/mcp/vscode
+      - type: SourceCode
+        url: https://github.com/ZenRows/zenrows-mcp
+      - type: NPM
+        url: https://www.npmjs.com/package/@zenrows/mcp
+  - aid: zenrows:sdks
+    name: ZenRows SDKs
+    description: >-
+      First-party SDKs that wrap the Universal Scraper API and Residential Proxies with automatic retries, exponential
+      backoff, concurrency helpers, and ergonomic clients. Official SDKs ship for Python (pip install zenrows),
+      Node.js/TypeScript, Go, and the browser. Sample projects and a Scrapy middleware are published from
+      github.com/ZenRows. All SDKs are MIT-licensed.
+    humanURL: https://github.com/ZenRows
+    tags:
+      - SDK
+      - Python
+      - Node.js
+      - TypeScript
+      - Go
+      - Scrapy
+    properties:
+      - type: GitHubOrg
+        url: https://github.com/ZenRows
+      - type: PythonSDK
+        url: https://github.com/ZenRows/zenrows-python-sdk
+      - type: NodeJSSDK
+        url: https://github.com/ZenRows/zenrows-node-sdk
+      - type: GoSDK
+        url: https://github.com/ZenRows/zenrows-go-sdk
+      - type: JavaScriptSDK
+        url: https://github.com/ZenRows/browser-js-sdk
+      - type: ScrapyMiddleware
+        url: https://github.com/ZenRows/scrapy-zenrows-middleware
+common:
+  - type: Website
+    url: https://www.zenrows.com/
   - type: Documentation
-    url: https://docs.zenrows.com/universal-scraper-api/api-reference
-  - type: Documentation
-    url: https://docs.zenrows.com/universal-scraper-api/first-request
-  - type: SignUp
-    url: https://app.zenrows.com/register
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/openapi/zenrows-universal-scraper-openapi.yml
-  - type: SpectralRules
-    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/rules/zenrows-rules.yml
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-schema/zenrows-scrape-response-schema.json
-  - type: JSONStructure
-    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-structure/zenrows-scrape-request-structure.json
-  - type: JSONLDContext
-    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-ld/zenrows-context.jsonld
-  - type: NaftikoCapability
-    url: capabilities/universal-scraper.yaml
-- aid: zenrows:scraping-browser
-  name: ZenRows Scraping Browser
-  description: Cloud headless browser exposed over WebSocket at wss://browser.zenrows.com?apikey=KEY,
-    compatible with Playwright, Puppeteer, and the underlying Chrome DevTools Protocol. Each session
-    runs on the ZenRows infrastructure with automatic rotation across 55M+ residential IPs in 190+
-    countries, country and world-region targeting, configurable session TTL, and 99.9% uptime.
-    Billed per session-hour ($0.09/hr in 30-second increments) plus per-GB bandwidth (from $5.50/GB,
-    discounted to $2.80/GB at Enterprise). Suited to single-page apps, complex user flows, and
-    long-running interactive scraping.
-  humanURL: https://docs.zenrows.com/scraping-browser/introduction
-  tags:
-  - Browser Automation
-  - Playwright
-  - Puppeteer
-  - CDP
-  - Residential Proxies
-  - WebSocket
-  properties:
-  - type: Documentation
-    url: https://docs.zenrows.com/scraping-browser/introduction
-  - type: Documentation
-    url: https://docs.zenrows.com/scraping-browser/scraping-browser-setup
-  - type: Documentation
-    url: https://docs.zenrows.com/scraping-browser/get-started/playwright
-  - type: Documentation
-    url: https://docs.zenrows.com/scraping-browser/get-started/puppeteer
-  - type: FAQ
-    url: https://docs.zenrows.com/scraping-browser/faq
-- aid: zenrows:residential-proxies
-  name: ZenRows Residential Proxies
-  description: HTTP and SOCKS5 residential proxy network with 55M+ IPs across 190+ countries,
-    username/password authentication, country and world-region targeting (e.g. country-es for Spain),
-    and sticky-session TTL configurable from 30 seconds up to 1 day. Sold by bandwidth rather than
-    request count; intended as a drop-in proxy for any HTTP client, browser, or scraping framework.
-  humanURL: https://docs.zenrows.com/residential-proxies/introduction
-  tags:
-  - Proxies
-  - Residential Proxies
-  - HTTP
-  - SOCKS5
-  - Geo-Targeting
-  properties:
-  - type: Documentation
-    url: https://docs.zenrows.com/residential-proxies/introduction
-  - type: Documentation
-    url: https://docs.zenrows.com/residential-proxies/residential-proxies-setup
-  - type: Documentation
-    url: https://docs.zenrows.com/residential-proxies/get-started/first-request
-  - type: FAQ
-    url: https://docs.zenrows.com/residential-proxies/faq
-- aid: zenrows:scraper-apis
-  name: ZenRows Scraper APIs
-  description: Vertical, structured-data scraper endpoints for major commerce and real-estate sites,
-    sharing the api.zenrows.com authentication and credit model. Covers Amazon (ASIN lookup,
-    discovery), Google (search results), Walmart (discovery, product information, product reviews),
-    Zillow (discovery, property data), and Idealista (discovery, property data, Spanish real-estate
-    focus). Returns parsed JSON rather than raw HTML, with provider-managed selectors that absorb
-    site-side layout changes.
-  humanURL: https://docs.zenrows.com/scraper-apis/introduction
-  tags:
-  - Web Scraping
-  - Structured Data
-  - E-Commerce
-  - Real Estate
-  - Amazon
-  - Google
-  - Walmart
-  - Zillow
-  - Idealista
-  properties:
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/introduction
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/get-started/amazon-asin
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/get-started/google-search
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/get-started/zillow-property
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/get-started/idealista-property
-  - type: Documentation
-    url: https://docs.zenrows.com/scraper-apis/get-started/walmart-product
-- aid: zenrows:mcp
-  name: ZenRows MCP Server
-  description: Official ZenRows Model Context Protocol server that exposes the scraping platform
-    to AI assistants. Available as a remote hosted server at https://mcp.zenrows.com/mcp with OAuth
-    bearer authentication, or locally via the npm package @zenrows/mcp (npx -y @zenrows/mcp). Ships
-    scrape tools for Markdown/HTML/JSON/plaintext/PDF/screenshots and 30+ browser_* tools covering
-    navigation, clicks, form fills, JavaScript execution, cookies, tabs, and persistent sessions.
-  humanURL: https://docs.zenrows.com/integrations/mcp/mcp-overview
-  tags:
-  - MCP
-  - AI
-  - Agents
-  - LLM
-  properties:
-  - type: Documentation
-    url: https://docs.zenrows.com/integrations/mcp/mcp-overview
-  - type: Documentation
-    url: https://docs.zenrows.com/integrations/mcp/claude-desktop
-  - type: Documentation
-    url: https://docs.zenrows.com/integrations/mcp/claude-code
-  - type: Documentation
-    url: https://docs.zenrows.com/integrations/mcp/cursor
-  - type: Documentation
-    url: https://docs.zenrows.com/integrations/mcp/vscode
-  - type: SourceCode
-    url: https://github.com/ZenRows/zenrows-mcp
-  - type: NPM
-    url: https://www.npmjs.com/package/@zenrows/mcp
-- aid: zenrows:sdks
-  name: ZenRows SDKs
-  description: First-party SDKs that wrap the Universal Scraper API and Residential Proxies with
-    automatic retries, exponential backoff, concurrency helpers, and ergonomic clients. Official
-    SDKs ship for Python (pip install zenrows), Node.js/TypeScript, Go, and the browser. Sample
-    projects and a Scrapy middleware are published from github.com/ZenRows. All SDKs are MIT-licensed.
-  humanURL: https://github.com/ZenRows
-  tags:
-  - SDK
-  - Python
-  - Node.js
-  - TypeScript
-  - Go
-  - Scrapy
-  properties:
+    url: https://docs.zenrows.com/
   - type: GitHubOrg
     url: https://github.com/ZenRows
-  - type: PythonSDK
-    url: https://github.com/ZenRows/zenrows-python-sdk
-  - type: NodeJSSDK
-    url: https://github.com/ZenRows/zenrows-node-sdk
-  - type: GoSDK
-    url: https://github.com/ZenRows/zenrows-go-sdk
-  - type: JavaScriptSDK
-    url: https://github.com/ZenRows/browser-js-sdk
-  - type: ScrapyMiddleware
-    url: https://github.com/ZenRows/scrapy-zenrows-middleware
-common:
-- type: Website
-  url: https://www.zenrows.com/
-- type: Documentation
-  url: https://docs.zenrows.com/
-- type: GitHubOrg
-  url: https://github.com/ZenRows
-- type: Pricing
-  url: https://www.zenrows.com/pricing
-- type: SignUp
-  url: https://app.zenrows.com/register
-- type: Login
-  url: https://app.zenrows.com/
-- type: Blog
-  url: https://www.zenrows.com/blog
-- type: KnowledgeBase
-  url: https://www.zenrows.com/knowledgehub
-- type: Status
-  url: https://status.zenrows.com/
-- type: ChangeLog
-  url: https://eu.intercom.news/zenrows
-- type: ErrorCodes
-  url: https://docs.zenrows.com/api-error-codes
-- type: Legal
-  url: https://www.zenrows.com/legal
-- type: ForbiddenSites
-  url: https://docs.zenrows.com/forbidden-sites
-- type: Academy
-  url: https://docs.zenrows.com/zenrows-academy/introduction
-- type: LLMsTxt
-  url: https://docs.zenrows.com/llms.txt
-- type: LinkedIn
-  url: https://www.linkedin.com/company/zenrows
-- type: XTwitter
-  url: https://twitter.com/ZenRows
-- type: Integrations
-  url: https://docs.zenrows.com/integrations/overview
-- type: PlansAndPricing
-  url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/plans/zenrows-plans-pricing.yml
-- type: RateLimits
-  url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/rate-limits/zenrows-rate-limits.yml
-- type: FinOps
-  url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/finops/zenrows-finops.yml
-- type: Vocabulary
-  url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/vocabulary/zenrows-vocabulary.yml
+  - type: Pricing
+    url: https://www.zenrows.com/pricing
+  - type: SignUp
+    url: https://app.zenrows.com/register
+  - type: Login
+    url: https://app.zenrows.com/
+  - type: Blog
+    url: https://www.zenrows.com/blog
+  - type: KnowledgeBase
+    url: https://www.zenrows.com/knowledgehub
+  - type: Status
+    url: https://status.zenrows.com/
+  - type: ChangeLog
+    url: https://eu.intercom.news/zenrows
+  - type: ErrorCodes
+    url: https://docs.zenrows.com/api-error-codes
+  - type: Legal
+    url: https://www.zenrows.com/legal
+  - type: ForbiddenSites
+    url: https://docs.zenrows.com/forbidden-sites
+  - type: Academy
+    url: https://docs.zenrows.com/zenrows-academy/introduction
+  - type: LLMsTxt
+    url: https://docs.zenrows.com/llms.txt
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/zenrows
+  - type: XTwitter
+    url: https://twitter.com/ZenRows
+  - type: Integrations
+    url: https://docs.zenrows.com/integrations/overview
+  - type: PlansAndPricing
+    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/plans/zenrows-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/rate-limits/zenrows-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/finops/zenrows-finops.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/vocabulary/zenrows-vocabulary.yml
 integrations:
-- name: Playwright
-- name: Puppeteer
-- name: Selenium
-- name: Scrapy
-- name: Undici
-- name: LangChain
-- name: LlamaIndex
-- name: OpenAI Agents SDK
-- name: Claude Desktop
-- name: Claude Code
-- name: Cursor
-- name: VS Code
-- name: JetBrains
-- name: Windsurf
-- name: Zed
-- name: Zapier
-- name: n8n
-- name: Make
-- name: Pipedream
-- name: Node-RED
-- name: MuleSoft
-- name: Clay
-- name: Flowise
-- name: Lindy
-- name: OpenAI
-- name: 2Captcha
-- name: Anthropic
+  - name: Playwright
+  - name: Puppeteer
+  - name: Selenium
+  - name: Scrapy
+  - name: Undici
+  - name: LangChain
+  - name: LlamaIndex
+  - name: OpenAI Agents SDK
+  - name: Claude Desktop
+  - name: Claude Code
+  - name: Cursor
+  - name: VS Code
+  - name: JetBrains
+  - name: Windsurf
+  - name: Zed
+  - name: Zapier
+  - name: n8n
+  - name: Make
+  - name: Pipedream
+  - name: Node-RED
+  - name: MuleSoft
+  - name: Clay
+  - name: Flowise
+  - name: Lindy
+  - name: OpenAI
+  - name: 2Captcha
+  - name: Anthropic
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

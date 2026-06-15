@@ -1,0 +1,2048 @@
+{
+  "item": [
+    {
+      "id": "a95edfea-72bb-4b89-b82e-46eec0200d0c",
+      "name": "Universal Scraper",
+      "description": {
+        "content": "Scrape any URL with anti-bot bypass and optional rendering.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8267cbd-495f-4b2c-9871-d5009fc88b80",
+          "name": "Scrape a URL",
+          "request": {
+            "name": "Scrape a URL",
+            "description": {
+              "content": "Fetch and scrape any URL, optionally rendering JavaScript and routing through ZenRows' anti-bot, premium proxy, or geo-targeted proxy pool. Returns the rendered HTML by default, or a markdown/plaintext/PDF/JSON payload or a screenshot when the corresponding flags are set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) ZenRows API key for authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) Target URL to scrape (URL-encoded)."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass."
+                },
+                {
+                  "disabled": false,
+                  "key": "js_render",
+                  "value": "false",
+                  "description": "Render the page in a real browser before returning content."
+                },
+                {
+                  "disabled": false,
+                  "key": "premium_proxy",
+                  "value": "false",
+                  "description": "Route the request through the residential proxy pool."
+                },
+                {
+                  "disabled": false,
+                  "key": "proxy_country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code for proxy geolocation."
+                },
+                {
+                  "disabled": false,
+                  "key": "custom_headers",
+                  "value": "false",
+                  "description": "Forward custom HTTP headers from the request to the target site."
+                },
+                {
+                  "disabled": false,
+                  "key": "session_id",
+                  "value": "<integer>",
+                  "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes."
+                },
+                {
+                  "disabled": false,
+                  "key": "js_instructions",
+                  "value": "<string>",
+                  "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load."
+                },
+                {
+                  "disabled": false,
+                  "key": "wait",
+                  "value": "<integer>",
+                  "description": "Fixed delay in milliseconds after page load before returning the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "wait_for",
+                  "value": "<string>",
+                  "description": "CSS selector to wait for before returning the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "block_resources",
+                  "value": "<string>",
+                  "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "css_extractor",
+                  "value": "<string>",
+                  "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction."
+                },
+                {
+                  "disabled": false,
+                  "key": "autoparse",
+                  "value": "false",
+                  "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors."
+                },
+                {
+                  "disabled": false,
+                  "key": "json_response",
+                  "value": "false",
+                  "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata."
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "Convert the rendered response into another format."
+                },
+                {
+                  "disabled": false,
+                  "key": "screenshot",
+                  "value": "false",
+                  "description": "Capture an above-the-fold screenshot of the page."
+                },
+                {
+                  "disabled": false,
+                  "key": "screenshot_fullpage",
+                  "value": "false",
+                  "description": "Capture a full-page screenshot of the page."
+                },
+                {
+                  "disabled": false,
+                  "key": "screenshot_selector",
+                  "value": "<string>",
+                  "description": "CSS selector to scope the screenshot to a single element."
+                },
+                {
+                  "disabled": false,
+                  "key": "screenshot_format",
+                  "value": "png",
+                  "description": "Output format for screenshot bytes."
+                },
+                {
+                  "disabled": false,
+                  "key": "screenshot_quality",
+                  "value": "<integer>",
+                  "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "outputs",
+                  "value": "<string>",
+                  "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "original_status",
+                  "value": "false",
+                  "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx."
+                },
+                {
+                  "disabled": false,
+                  "key": "allowed_status_codes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of HTTP status codes for which content should still be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f803c017-0e91-4e0b-8a3c-fae30479e251",
+              "name": "Scrape result. The payload is HTML by default, JSON when `json_response`, `autoparse`, `css_extractor`, or `outputs` is set, markdown/plaintext/PDF when `response_type` is set, or image bytes when a screenshot flag is set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum number of concurrent ZenRows requests permitted by the plan.",
+                  "key": "Concurrency-Limit",
+                  "value": "5320"
+                },
+                {
+                  "disabled": false,
+                  "description": "Currently available concurrent-request headroom.",
+                  "key": "Concurrency-Remaining",
+                  "value": "5320"
+                },
+                {
+                  "disabled": false,
+                  "description": "Credit cost of the request (varies with js_render, premium_proxy, mode, response_type).",
+                  "key": "X-Request-Cost",
+                  "value": "2327.4595354598428"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for the request, for support and log correlation.",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Final URL of the page after redirects.",
+                  "key": "Zr-Final-Url",
+                  "value": "https://EtVeAgURCwq.xkosPcP2FmNHlt+eR-p"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"http://GIYVuEQRgFolDGjPSvrWjqLkkcraXBRgf.ixwIJfPyprR9OCJFr\",\n  \"html\": \"string\",\n  \"status_code\": 1732,\n  \"headers\": {\n    \"key_0\": \"string\"\n  },\n  \"cookies\": [\n    {\n      \"key_0\": true,\n      \"key_1\": false,\n      \"key_2\": 1871,\n      \"key_3\": \"string\",\n      \"key_4\": 1785.6589948592093\n    },\n    {\n      \"key_0\": 5534,\n      \"key_1\": 4675.27865469652\n    }\n  ],\n  \"xhr\": [\n    {\n      \"key_0\": 6678.119128440543,\n      \"key_1\": 9357,\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"emails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"phone_numbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"links\": [\n    \"http://vwnJkDhzluylamWFiPYyW.sykxNIybeKFC9lr15vgji\",\n    \"http://ujQuapDxQUVlFhjWAIqHXgeoYeDFRkhZw.lyIHgc6P2QjBs0sA-SLQ-d\"\n  ],\n  \"images\": [\n    \"http://jauiLdANMKSpPbSQDKcaJdHpVqpUtivXT.lepkkB-sYUUb+hRxgyWMPTqazz0Tt3LSUNOKCFz2\",\n    \"https://b.oaiPEfTfBaIQoOQaxZ\"\n  ],\n  \"autoparse\": {\n    \"key_0\": 1257.298923803797,\n    \"key_1\": 3883.935614476883\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57325670-6dac-41aa-b903-abc6b576da73",
+              "name": "Bad Request. Codes include REQS001 (forbidden domain), REQS002 (needs js_render or premium_proxy), REQS004 (invalid parameters), REQS006 (invalid CAPTCHA solver key), RESP004 (invalid css_extractor), RESP008 (non-retryable target error).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89ee1b13-4491-464d-8a66-320b111633b0",
+              "name": "Unauthorized. Codes AUTH001 (API key missing), AUTH002 (invalid format), AUTH003 (key not found).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "396fcea2-9251-4969-ae58-54f7db442182",
+              "name": "Payment Required. Codes AUTH004 (usage exceeded), AUTH005 (key expired), AUTH010 (feature not in plan), AUTH011 (no active subscription), AUTH012 (subscription does not allow product).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "020ca5f0-f146-468a-b74a-b28781878348",
+              "name": "Forbidden. Codes AUTH009 (email unverified), BLK0001 (IP blocked for excessive error rate).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8b11de5-59ff-4c93-8274-36ee1b87c77b",
+              "name": "Not Found. Codes RESP002 (target page 404), RESP007 (DNS unresolvable).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f850f19-fbe7-4fd8-aef9-c9ba0f1e0b1d",
+              "name": "Content Too Large. Code RESP005 (response exceeds plan max download size).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07c67f5b-d863-446f-9283-9ef750867fb4",
+              "name": "Unprocessable Entity. Code RESP001 (could not retrieve content).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3c62b19-b7ed-4257-a505-2bef3b1d6c8f",
+              "name": "Failed Dependency. Code RESP006 (CAPTCHA solving failed).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c945bc6e-30aa-4440-81d2-64d83d381f16",
+              "name": "Too Many Requests. Codes AUTH006 (concurrency limit exceeded), AUTH008 (rate limit exceeded).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a997be0-d05e-44f0-b460-8595812067df",
+              "name": "Bad Gateway. Code RESP003 (could not parse content automatically).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd178875-828d-437d-bbe0-c9d9be2fd01e",
+              "name": "Gateway Timeout. Code CTX0002 (request exceeded maximum time limit).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"status\": 9387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f36b523-e93f-40d5-9e0a-39dc6fcc8aaa",
+          "name": "Scrape a URL With a POST Body",
+          "request": {
+            "name": "Scrape a URL With a POST Body",
+            "description": {
+              "content": "Variant of the scrape endpoint that forwards a request body to the target URL, used to scrape pages that only respond to POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) ZenRows API key for authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) Target URL to scrape."
+                },
+                {
+                  "disabled": false,
+                  "key": "js_render",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "premium_proxy",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fbf206d0-7000-4a3f-9d1e-b1a4bb325f94",
+              "name": "Response from the target site, mirroring the GET variant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "7385"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "9581"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_2",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_3",
+                      "value": "890"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"http://yCwzmGlvwBKPLVgWzPZyeJRrmE.qfgqd\",\n  \"html\": \"string\",\n  \"status_code\": 1828,\n  \"headers\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"cookies\": [\n    {\n      \"key_0\": 5410.522053186853\n    },\n    {\n      \"key_0\": 5774.384305910198,\n      \"key_1\": true,\n      \"key_2\": 9219\n    }\n  ],\n  \"xhr\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": 382.24959634046706\n    },\n    {\n      \"key_0\": 8276.709337355835,\n      \"key_1\": true\n    }\n  ],\n  \"emails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"phone_numbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"links\": [\n    \"https://XZodWzPtYLIFs.thxP5EtwZq+dUo0A31LHGjMEwgWW\",\n    \"https://RhhNlHWcImBVW.kmqMBoOkitTZ0QR.-FkgjU3lMF-Ypr,fbgGEZpHQSmbCiCrfz24xFVReZujybR6qWmvyH-o1\"\n  ],\n  \"images\": [\n    \"https://WrkMJLnJKtJ.auNhfO2P7Fc8EyY0dPXfBSwZPFXE2Lw+6k\",\n    \"https://DnmjpWtPjgMkfLWCQNm.oxlPXCsN,9\"\n  ],\n  \"autoparse\": {\n    \"key_0\": \"string\",\n    \"key_1\": 4574\n  },\n  \"key_0\": false,\n  \"key_1\": false,\n  \"key_2\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zenrows.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "478d4326-7df7-4f59-abdf-3f6cbd6001ac",
+    "name": "ZenRows Universal Scraper API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ZenRows Universal Scraper API fetches any public URL with optional JavaScript rendering, anti-bot bypass (Adaptive Stealth Mode), premium residential proxies, geographic targeting, CSS or AI-driven data extraction, custom JavaScript instructions, page screenshots, and output conversion to markdown, plaintext, or PDF. A single ZenRows API key authenticates this endpoint and shares a credit pool with the Scraping Browser, Residential Proxies, and Scraper APIs products. Source: https://docs.zenrows.com/universal-scraper-api/api-reference\n\nContact Support:\n Name: ZenRows",
+      "type": "text/plain"
+    }
+  }
+}
