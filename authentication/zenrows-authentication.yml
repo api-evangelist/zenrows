@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/zenrows-universal-scraper-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: query
+  parameter: apikey
+  description: ZenRows API key, passed as the `apikey` query parameter on every request.
+  sources:
+  - openapi/zenrows-universal-scraper-openapi.yml
