@@ -209,6 +209,8 @@ apis:
       - type: ScrapyMiddleware
         url: https://github.com/ZenRows/scrapy-zenrows-middleware
 common:
+  - type: AgenticAccess
+    url: agentic-access/zenrows-agentic-access.yml
   - type: DomainSecurity
     url: security/zenrows-domain-security.yml
   - type: Authentication
