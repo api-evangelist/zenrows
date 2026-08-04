@@ -1,0 +1,445 @@
+openapi: 3.0.3
+info:
+  title: ZenRows Universal Scraper API
+  description: >-
+    The ZenRows Universal Scraper API fetches any public URL with optional
+    JavaScript rendering, anti-bot bypass (Adaptive Stealth Mode), premium
+    residential proxies, geographic targeting, CSS or AI-driven data extraction,
+    custom JavaScript instructions, page screenshots, and output conversion to
+    markdown, plaintext, or PDF. A single ZenRows API key authenticates this
+    endpoint and shares a credit pool with the Scraping Browser, Residential
+    Proxies, and Scraper APIs products.
+    Source: https://docs.zenrows.com/universal-scraper-api/api-reference
+  version: '1.0'
+  contact:
+    name: ZenRows
+    url: https://www.zenrows.com/
+  license:
+    name: ZenRows Terms of Service
+    url: https://www.zenrows.com/legal
+servers:
+  - url: https://api.zenrows.com/v1
+    description: ZenRows Universal Scraper API
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Universal Scraper
+    description: Scrape any URL with anti-bot bypass and optional rendering.
+paths:
+  /:
+    get:
+      operationId: scrapeUrl
+      summary: Scrape a URL
+      description: >-
+        Fetch and scrape any URL, optionally rendering JavaScript and routing
+        through ZenRows' anti-bot, premium proxy, or geo-targeted proxy pool.
+        Returns the rendered HTML by default, or a markdown/plaintext/PDF/JSON
+        payload or a screenshot when the corresponding flags are set.
+      tags:
+        - Universal Scraper
+      parameters:
+        - name: apikey
+          in: query
+          required: true
+          description: ZenRows API key for authentication.
+          schema:
+            type: string
+        - name: url
+          in: query
+          required: true
+          description: Target URL to scrape (URL-encoded).
+          schema:
+            type: string
+            format: uri
+        - name: mode
+          in: query
+          required: false
+          description: Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.
+          schema:
+            type: string
+            enum: [auto]
+        - name: js_render
+          in: query
+          required: false
+          description: Render the page in a real browser before returning content.
+          schema:
+            type: boolean
+            default: false
+        - name: premium_proxy
+          in: query
+          required: false
+          description: Route the request through the residential proxy pool.
+          schema:
+            type: boolean
+            default: false
+        - name: proxy_country
+          in: query
+          required: false
+          description: ISO 3166-1 alpha-2 country code for proxy geolocation.
+          schema:
+            type: string
+        - name: custom_headers
+          in: query
+          required: false
+          description: Forward custom HTTP headers from the request to the target site.
+          schema:
+            type: boolean
+            default: false
+        - name: session_id
+          in: query
+          required: false
+          description: Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.
+          schema:
+            type: integer
+        - name: js_instructions
+          in: query
+          required: false
+          description: Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.
+          schema:
+            type: string
+        - name: wait
+          in: query
+          required: false
+          description: Fixed delay in milliseconds after page load before returning the response.
+          schema:
+            type: integer
+        - name: wait_for
+          in: query
+          required: false
+          description: CSS selector to wait for before returning the response.
+          schema:
+            type: string
+        - name: block_resources
+          in: query
+          required: false
+          description: Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).
+          schema:
+            type: string
+        - name: css_extractor
+          in: query
+          required: false
+          description: URL-encoded JSON object mapping field names to CSS selectors for structured extraction.
+          schema:
+            type: string
+        - name: autoparse
+          in: query
+          required: false
+          description: Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.
+          schema:
+            type: boolean
+            default: false
+        - name: json_response
+          in: query
+          required: false
+          description: Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.
+          schema:
+            type: boolean
+            default: false
+        - name: response_type
+          in: query
+          required: false
+          description: Convert the rendered response into another format.
+          schema:
+            type: string
+            enum: [markdown, plaintext, pdf]
+        - name: screenshot
+          in: query
+          required: false
+          description: Capture an above-the-fold screenshot of the page.
+          schema:
+            type: boolean
+            default: false
+        - name: screenshot_fullpage
+          in: query
+          required: false
+          description: Capture a full-page screenshot of the page.
+          schema:
+            type: boolean
+            default: false
+        - name: screenshot_selector
+          in: query
+          required: false
+          description: CSS selector to scope the screenshot to a single element.
+          schema:
+            type: string
+        - name: screenshot_format
+          in: query
+          required: false
+          description: Output format for screenshot bytes.
+          schema:
+            type: string
+            enum: [png, jpeg]
+            default: png
+        - name: screenshot_quality
+          in: query
+          required: false
+          description: JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: outputs
+          in: query
+          required: false
+          description: Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).
+          schema:
+            type: string
+        - name: original_status
+          in: query
+          required: false
+          description: Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.
+          schema:
+            type: boolean
+            default: false
+        - name: allowed_status_codes
+          in: query
+          required: false
+          description: Comma-separated list of HTTP status codes for which content should still be returned.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scrape result. The payload is HTML by default, JSON when `json_response`, `autoparse`, `css_extractor`, or `outputs` is set, markdown/plaintext/PDF when `response_type` is set, or image bytes when a screenshot flag is set.
+          headers:
+            Concurrency-Limit:
+              description: Maximum number of concurrent ZenRows requests permitted by the plan.
+              schema:
+                type: integer
+            Concurrency-Remaining:
+              description: Currently available concurrent-request headroom.
+              schema:
+                type: integer
+            X-Request-Cost:
+              description: Credit cost of the request (varies with js_render, premium_proxy, mode, response_type).
+              schema:
+                type: number
+            X-Request-Id:
+              description: Unique identifier for the request, for support and log correlation.
+              schema:
+                type: string
+            Zr-Final-Url:
+              description: Final URL of the page after redirects.
+              schema:
+                type: string
+                format: uri
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScrapeJsonResponse'
+            text/markdown:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request. Codes include REQS001 (forbidden domain), REQS002 (needs js_render or premium_proxy), REQS004 (invalid parameters), REQS006 (invalid CAPTCHA solver key), RESP004 (invalid css_extractor), RESP008 (non-retryable target error).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '401':
+          description: Unauthorized. Codes AUTH001 (API key missing), AUTH002 (invalid format), AUTH003 (key not found).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '402':
+          description: Payment Required. Codes AUTH004 (usage exceeded), AUTH005 (key expired), AUTH010 (feature not in plan), AUTH011 (no active subscription), AUTH012 (subscription does not allow product).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '403':
+          description: Forbidden. Codes AUTH009 (email unverified), BLK0001 (IP blocked for excessive error rate).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '404':
+          description: Not Found. Codes RESP002 (target page 404), RESP007 (DNS unresolvable).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '413':
+          description: Content Too Large. Code RESP005 (response exceeds plan max download size).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '422':
+          description: Unprocessable Entity. Code RESP001 (could not retrieve content).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '424':
+          description: Failed Dependency. Code RESP006 (CAPTCHA solving failed).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '429':
+          description: Too Many Requests. Codes AUTH006 (concurrency limit exceeded), AUTH008 (rate limit exceeded).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '502':
+          description: Bad Gateway. Code RESP003 (could not parse content automatically).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+        '504':
+          description: Gateway Timeout. Code CTX0002 (request exceeded maximum time limit).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZenRowsError'
+    post:
+      operationId: scrapeUrlPost
+      summary: Scrape a URL With a POST Body
+      description: >-
+        Variant of the scrape endpoint that forwards a request body to the
+        target URL, used to scrape pages that only respond to POST.
+      tags:
+        - Universal Scraper
+      parameters:
+        - name: apikey
+          in: query
+          required: true
+          description: ZenRows API key for authentication.
+          schema:
+            type: string
+        - name: url
+          in: query
+          required: true
+          description: Target URL to scrape.
+          schema:
+            type: string
+            format: uri
+        - name: js_render
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: premium_proxy
+          in: query
+          required: false
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        description: Body forwarded to the target URL.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Response from the target site, mirroring the GET variant.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScrapeJsonResponse'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+      description: ZenRows API key, passed as the `apikey` query parameter on every request.
+  schemas:
+    ScrapeJsonResponse:
+      type: object
+      description: JSON envelope returned when json_response, autoparse, css_extractor, or outputs is enabled.
+      additionalProperties: true
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Final URL of the page after redirects.
+        html:
+          type: string
+          description: Rendered HTML content of the page.
+        status_code:
+          type: integer
+          description: HTTP status code returned by the target site.
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        cookies:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        xhr:
+          type: array
+          description: Captured XHR / fetch network requests (when json_response is enabled).
+          items:
+            type: object
+            additionalProperties: true
+        emails:
+          type: array
+          items:
+            type: string
+        phone_numbers:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            type: string
+            format: uri
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        autoparse:
+          type: object
+          description: Structured fields produced by the autoparse extractor.
+          additionalProperties: true
+    ZenRowsError:
+      type: object
+      description: Error payload returned by the ZenRows API.
+      properties:
+        code:
+          type: string
+          description: ZenRows error code (e.g. AUTH003, REQS002, RESP005).
+        message:
+          type: string
+          description: Human-readable explanation.
+        status:
+          type: integer
+          description: HTTP status code.
+      required:
+        - code
+        - message

@@ -1,0 +1,2291 @@
+{
+  "info": {
+    "_postman_id": "22b244b9-7b90-4e77-abe5-a86916b24a2f",
+    "name": "ZenRows Universal Scraper API",
+    "description": "The ZenRows Universal Scraper API fetches any public URL with optional JavaScript rendering, anti-bot bypass (Adaptive Stealth Mode), premium residential proxies, geographic targeting, CSS or AI-driven data extraction, custom JavaScript instructions, page screenshots, and output conversion to markdown, plaintext, or PDF. A single ZenRows API key authenticates this endpoint and shares a credit pool with the Scraping Browser, Residential Proxies, and Scraper APIs products. Source: https://docs.zenrows.com/universal-scraper-api/api-reference\n\nContact Support:\n Name: ZenRows",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:20.000Z",
+    "updatedAt": "2026-07-28T03:37:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-22b244b9-7b90-4e77-abe5-a86916b24a2f"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Scrape a URL",
+          "id": "a001dce7-01ea-4f8d-a418-acbfd219ff59",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?apikey=<string>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ZenRows API key for authentication.",
+                  "key": "apikey",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Target URL to scrape (URL-encoded).",
+                  "key": "url",
+                  "value": "<uri>"
+                },
+                {
+                  "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                  "key": "mode",
+                  "value": "auto"
+                },
+                {
+                  "description": "Render the page in a real browser before returning content.",
+                  "key": "js_render",
+                  "value": "false"
+                },
+                {
+                  "description": "Route the request through the residential proxy pool.",
+                  "key": "premium_proxy",
+                  "value": "false"
+                },
+                {
+                  "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                  "key": "proxy_country",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Forward custom HTTP headers from the request to the target site.",
+                  "key": "custom_headers",
+                  "value": "false"
+                },
+                {
+                  "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                  "key": "session_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                  "key": "js_instructions",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Fixed delay in milliseconds after page load before returning the response.",
+                  "key": "wait",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "CSS selector to wait for before returning the response.",
+                  "key": "wait_for",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                  "key": "block_resources",
+                  "value": "<string>"
+                },
+                {
+                  "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                  "key": "css_extractor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                  "key": "autoparse",
+                  "value": "false"
+                },
+                {
+                  "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                  "key": "json_response",
+                  "value": "false"
+                },
+                {
+                  "description": "Convert the rendered response into another format.",
+                  "key": "response_type",
+                  "value": "pdf"
+                },
+                {
+                  "description": "Capture an above-the-fold screenshot of the page.",
+                  "key": "screenshot",
+                  "value": "false"
+                },
+                {
+                  "description": "Capture a full-page screenshot of the page.",
+                  "key": "screenshot_fullpage",
+                  "value": "false"
+                },
+                {
+                  "description": "CSS selector to scope the screenshot to a single element.",
+                  "key": "screenshot_selector",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Output format for screenshot bytes.",
+                  "key": "screenshot_format",
+                  "value": "png"
+                },
+                {
+                  "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                  "key": "screenshot_quality",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                  "key": "outputs",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                  "key": "original_status",
+                  "value": "false"
+                },
+                {
+                  "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                  "key": "allowed_status_codes",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Fetch and scrape any URL, optionally rendering JavaScript and routing through ZenRows' anti-bot, premium proxy, or geo-targeted proxy pool. Returns the rendered HTML by default, or a markdown/plaintext/PDF/JSON payload or a screenshot when the corresponding flags are set."
+          },
+          "response": [
+            {
+              "id": "74f22c42-b157-465c-9929-f0ec285cb2db",
+              "name": "Scrape result. The payload is HTML by default, JSON when `json_response`, `autoparse`, `css_extractor`, or `outputs` is set, markdown/plaintext/PDF when `response_type` is set, or image bytes when a screenshot flag is set.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Maximum number of concurrent ZenRows requests permitted by the plan.",
+                    "type": "text/plain"
+                  },
+                  "key": "Concurrency-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Currently available concurrent-request headroom.",
+                    "type": "text/plain"
+                  },
+                  "key": "Concurrency-Remaining",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Credit cost of the request (varies with js_render, premium_proxy, mode, response_type).",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Request-Cost",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unique identifier for the request, for support and log correlation.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Request-Id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Final URL of the page after redirects.",
+                    "type": "text/plain"
+                  },
+                  "key": "Zr-Final-Url",
+                  "value": "<uri>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"url\": \"<uri>\",\n  \"html\": \"<string>\",\n  \"status_code\": \"<integer>\",\n  \"headers\": {\n    \"exercitation_2\": \"<string>\"\n  },\n  \"cookies\": [\n    {\n      \"essec\": 90261602.72354802,\n      \"aliqua_0eb\": 47082425.43303087\n    },\n    {\n      \"fugiat9\": \"incididunt commodo non reprehenderit\"\n    }\n  ],\n  \"xhr\": [\n    {\n      \"et_892\": false,\n      \"aliquipa\": 50571365,\n      \"commodo7\": 36409533,\n      \"do_d\": -67350066.17214715\n    },\n    {\n      \"deserunt3\": 24768461.48625551,\n      \"ut_bb5\": false\n    }\n  ],\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"images\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"autoparse\": {\n    \"Excepteur3e\": -26581578.109422296,\n    \"qui_a\": \"minim ea fugiat Excepteur dolore\",\n    \"id_7db\": 88456053\n  }\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-74f22c42-b157-465c-9929-f0ec285cb2db"
+            },
+            {
+              "id": "82ee20f4-aa9a-4d56-af4a-ac149127d2b1",
+              "name": "Bad Request. Codes include REQS001 (forbidden domain), REQS002 (needs js_render or premium_proxy), REQS004 (invalid parameters), REQS006 (invalid CAPTCHA solver key), RESP004 (invalid css_extractor), RESP008 (non-retryable target error).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-82ee20f4-aa9a-4d56-af4a-ac149127d2b1"
+            },
+            {
+              "id": "78ca1682-0ce4-45c3-8513-27c015803cfa",
+              "name": "Unauthorized. Codes AUTH001 (API key missing), AUTH002 (invalid format), AUTH003 (key not found).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-78ca1682-0ce4-45c3-8513-27c015803cfa"
+            },
+            {
+              "id": "18dbb8c3-7526-4e39-beee-f0f9868a2606",
+              "name": "Payment Required. Codes AUTH004 (usage exceeded), AUTH005 (key expired), AUTH010 (feature not in plan), AUTH011 (no active subscription), AUTH012 (subscription does not allow product).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-18dbb8c3-7526-4e39-beee-f0f9868a2606"
+            },
+            {
+              "id": "ff15c6fb-66cb-4472-bc9d-00ae194d87d0",
+              "name": "Forbidden. Codes AUTH009 (email unverified), BLK0001 (IP blocked for excessive error rate).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-ff15c6fb-66cb-4472-bc9d-00ae194d87d0"
+            },
+            {
+              "id": "4b6e7305-b9e7-4c64-9c9e-0e753c1512c0",
+              "name": "Not Found. Codes RESP002 (target page 404), RESP007 (DNS unresolvable).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-4b6e7305-b9e7-4c64-9c9e-0e753c1512c0"
+            },
+            {
+              "id": "d3f0ca4c-d94f-471a-9c35-666a763cd812",
+              "name": "Content Too Large. Code RESP005 (response exceeds plan max download size).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-d3f0ca4c-d94f-471a-9c35-666a763cd812"
+            },
+            {
+              "id": "8605123e-3cee-40af-b51c-1ac9ed97354c",
+              "name": "Unprocessable Entity. Code RESP001 (could not retrieve content).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-8605123e-3cee-40af-b51c-1ac9ed97354c"
+            },
+            {
+              "id": "6a8d745c-9c59-4a42-b4e1-38783219d44c",
+              "name": "Failed Dependency. Code RESP006 (CAPTCHA solving failed).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-6a8d745c-9c59-4a42-b4e1-38783219d44c"
+            },
+            {
+              "id": "0b7d8c0f-1459-4c75-80e9-6c568bb07127",
+              "name": "Too Many Requests. Codes AUTH006 (concurrency limit exceeded), AUTH008 (rate limit exceeded).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-0b7d8c0f-1459-4c75-80e9-6c568bb07127"
+            },
+            {
+              "id": "bc18fd87-e427-4d1c-9bac-6ce0b621d4f0",
+              "name": "Bad Gateway. Code RESP003 (could not parse content automatically).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-bc18fd87-e427-4d1c-9bac-6ce0b621d4f0"
+            },
+            {
+              "id": "578b9ad4-0c93-44d1-8c40-015e055b36ca",
+              "name": "Gateway Timeout. Code CTX0002 (request exceeded maximum time limit).",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&mode=auto&js_render=false&premium_proxy=false&proxy_country=<string>&custom_headers=false&session_id=<integer>&js_instructions=<string>&wait=<integer>&wait_for=<string>&block_resources=<string>&css_extractor=<string>&autoparse=false&json_response=false&response_type=pdf&screenshot=false&screenshot_fullpage=false&screenshot_selector=<string>&screenshot_format=png&screenshot_quality=<integer>&outputs=<string>&original_status=false&allowed_status_codes=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape (URL-encoded).",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Set to `auto` to enable Adaptive Stealth Mode anti-bot bypass.",
+                      "key": "mode",
+                      "value": "auto"
+                    },
+                    {
+                      "description": "Render the page in a real browser before returning content.",
+                      "key": "js_render",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Route the request through the residential proxy pool.",
+                      "key": "premium_proxy",
+                      "value": "false"
+                    },
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for proxy geolocation.",
+                      "key": "proxy_country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Forward custom HTTP headers from the request to the target site.",
+                      "key": "custom_headers",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Numeric session identifier that pins the same proxy IP across requests for up to 10 minutes.",
+                      "key": "session_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Base64-encoded list of browser instructions (click, scroll, wait, fill, evaluate) to execute after page load.",
+                      "key": "js_instructions",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fixed delay in milliseconds after page load before returning the response.",
+                      "key": "wait",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "CSS selector to wait for before returning the response.",
+                      "key": "wait_for",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of resource types to block during rendering (e.g. `image,stylesheet,font`).",
+                      "key": "block_resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "URL-encoded JSON object mapping field names to CSS selectors for structured extraction.",
+                      "key": "css_extractor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Automatically parse the page into a structured JSON object using ZenRows' built-in extractors.",
+                      "key": "autoparse",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Return the response wrapped in JSON, capturing network requests, XHRs, and metadata.",
+                      "key": "json_response",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Convert the rendered response into another format.",
+                      "key": "response_type",
+                      "value": "pdf"
+                    },
+                    {
+                      "description": "Capture an above-the-fold screenshot of the page.",
+                      "key": "screenshot",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Capture a full-page screenshot of the page.",
+                      "key": "screenshot_fullpage",
+                      "value": "false"
+                    },
+                    {
+                      "description": "CSS selector to scope the screenshot to a single element.",
+                      "key": "screenshot_selector",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Output format for screenshot bytes.",
+                      "key": "screenshot_format",
+                      "value": "png"
+                    },
+                    {
+                      "description": "JPEG quality from 1 to 100 (only with `screenshot_format=jpeg`).",
+                      "key": "screenshot_quality",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated list of structured outputs to extract (e.g. `emails,phone_numbers,links,images`).",
+                      "key": "outputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return the target site's original HTTP status code instead of ZenRows' normalized 200/4xx/5xx.",
+                      "key": "original_status",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Comma-separated list of HTTP status codes for which content should still be returned.",
+                      "key": "allowed_status_codes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-578b9ad4-0c93-44d1-8c40-015e055b36ca"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:21.000Z",
+          "updatedAt": "2026-07-28T03:37:21.000Z",
+          "uid": "35240-a001dce7-01ea-4f8d-a418-acbfd219ff59"
+        },
+        {
+          "name": "Scrape a URL With a POST Body",
+          "id": "7727a342-d1d3-4bdd-8ffb-1c58383b355b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cillumb0f\": -7554957.245790288,\n  \"consequat9_a\": 85454256\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?apikey=<string>&url=<uri>&js_render=<boolean>&premium_proxy=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ZenRows API key for authentication.",
+                  "key": "apikey",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Target URL to scrape.",
+                  "key": "url",
+                  "value": "<uri>"
+                },
+                {
+                  "key": "js_render",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "premium_proxy",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Variant of the scrape endpoint that forwards a request body to the target URL, used to scrape pages that only respond to POST."
+          },
+          "response": [
+            {
+              "id": "5402bdb7-9c2a-4123-b835-c8773e9765f0",
+              "name": "Response from the target site, mirroring the GET variant.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cillumb0f\": -7554957.245790288,\n  \"consequat9_a\": 85454256\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?apikey=<API Key>&url=<uri>&js_render=<boolean>&premium_proxy=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ZenRows API key for authentication.",
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    },
+                    {
+                      "description": "(Required) Target URL to scrape.",
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "js_render",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "premium_proxy",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"url\": \"<uri>\",\n  \"html\": \"<string>\",\n  \"status_code\": \"<integer>\",\n  \"headers\": {\n    \"exercitation_2\": \"<string>\"\n  },\n  \"cookies\": [\n    {\n      \"essec\": 90261602.72354802,\n      \"aliqua_0eb\": 47082425.43303087\n    },\n    {\n      \"fugiat9\": \"incididunt commodo non reprehenderit\"\n    }\n  ],\n  \"xhr\": [\n    {\n      \"et_892\": false,\n      \"aliquipa\": 50571365,\n      \"commodo7\": 36409533,\n      \"do_d\": -67350066.17214715\n    },\n    {\n      \"deserunt3\": 24768461.48625551,\n      \"ut_bb5\": false\n    }\n  ],\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"phone_numbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"images\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"autoparse\": {\n    \"Excepteur3e\": -26581578.109422296,\n    \"qui_a\": \"minim ea fugiat Excepteur dolore\",\n    \"id_7db\": 88456053\n  }\n}",
+              "createdAt": "2026-07-28T03:37:21.000Z",
+              "updatedAt": "2026-07-28T03:37:21.000Z",
+              "uid": "35240-5402bdb7-9c2a-4123-b835-c8773e9765f0"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:21.000Z",
+          "updatedAt": "2026-07-28T03:37:21.000Z",
+          "uid": "35240-7727a342-d1d3-4bdd-8ffb-1c58383b355b"
+        }
+      ],
+      "id": "251be2ff-2791-41c3-b925-ddd6af348ed0",
+      "createdAt": "2026-07-28T03:37:21.000Z",
+      "updatedAt": "2026-07-28T03:37:21.000Z",
+      "uid": "35240-251be2ff-2791-41c3-b925-ddd6af348ed0"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zenrows.com/v1"
+    }
+  ]
+}

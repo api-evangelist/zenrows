@@ -1,0 +1,14 @@
+{
+  "provider": "zenrows",
+  "sources": [
+    "zenrows-universal-scraper-api-openapi.yml"
+  ],
+  "outputs": [
+    "zenrows-universal-scraper-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
