@@ -212,6 +212,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-ld/zenrows-context.jsonld
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/ZenRows/zenrows-mcp/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/zenrows/overview
   - type: AgenticAccess
