@@ -36,6 +36,18 @@ tags:
   - Browser Automation
   - Screenshots
   - CAPTCHA
+  - Artificial Intelligence
+  - MCP
+  - Spain
+tags_raw:
+  - Web Scraping
+  - Data Extraction
+  - Anti-Bot
+  - Proxies
+  - Residential Proxies
+  - Browser Automation
+  - Screenshots
+  - CAPTCHA
   - AI
   - MCP
   - Spain
@@ -108,6 +120,16 @@ apis:
   - Web Scraping
   - Structured Data
   - E-Commerce
+  - Real-Estate
+  - Amazon
+  - Google
+  - Walmart
+  - Zillow
+  - Idealista
+  tags_raw:
+  - Web Scraping
+  - Structured Data
+  - E-Commerce
   - Real Estate
   - Amazon
   - Google
@@ -137,6 +159,11 @@ apis:
     and persistent sessions.
   humanURL: https://docs.zenrows.com/integrations/mcp/mcp-overview
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Agents
+  - LLM
+  tags_raw:
   - MCP
   - AI
   - Agents
