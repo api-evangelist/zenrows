@@ -11,6 +11,20 @@ description: >-
   OpenAI Agents SDK, Zapier, n8n, Make, Pipedream, Node-RED, MuleSoft, Clay, and an official MCP server (hosted at
   https://mcp.zenrows.com/mcp and as @zenrows/mcp on npm) exposing scrape and 30+ browser automation tools to AI agents.
 type: Provider
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -239,6 +253,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-ld/zenrows-context.jsonld
 common:
+  - type: IssueTracker
+    url: https://github.com/ZenRows/zenrows-mcp/issues
   - type: License
     name: MIT
     url: https://github.com/ZenRows/zenrows-mcp/blob/main/LICENSE
