@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: ZenRows Universal Scraper API
-  description: 'The ZenRows Universal Scraper API fetches any public URL with optional JavaScript rendering, anti-bot bypass (Adaptive Stealth Mode), premium residential proxies, geographic targeting, CSS or AI-driven data extraction, custom JavaScript instructions, page screenshots, and output conversion to markdown, plaintext, or PDF. A single ZenRows API key authenticates this endpoint and shares a credit pool with the Scraping Browser, Residential Proxies, and Scraper APIs products. Source: https://docs.zenrows.com/universal-scraper-api/api-reference'
+  description: The ZenRows Universal Scraper API fetches any public URL with optional JavaScript rendering, anti-bot bypass (Adaptive Stealth Mode), premium residential proxies, geographic targeting, CSS or AI-driven data extraction, custom JavaScript instructions, page screenshots, and output conversion to markdown, plaintext, or PDF.
   version: '1.0'
   contact:
     name: ZenRows

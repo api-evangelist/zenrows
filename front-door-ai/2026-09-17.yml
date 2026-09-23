@@ -1,0 +1,34 @@
+# Front Door AI Index — zenrows — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: zenrows
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.zenrows.com
+  final_host: www.zenrows.com
+  ownership: own
+  owner: zenrows
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 44
+  host_score: 44
+  density: 23.5
+  words: 1872
+  tiers:
+    agentic: 22
+    core: 16
+    model: 6
+  ambiguous: 49
+  top_terms:
+    agent: 39
+    AI: 15
+    MCP: 14
+    intelligence: 8
+    Claude: 6
+    AI agent: 5
+    RAG: 2
+    automation: 2
+    ML: 1
+    prompts: 1
