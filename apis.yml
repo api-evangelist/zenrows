@@ -134,7 +134,7 @@ apis:
   - Web Scraping
   - Structured Data
   - E-Commerce
-  - Real-Estate
+  - Real Estate
   - Amazon
   - Google
   - Walmart
@@ -150,6 +150,7 @@ apis:
   - Walmart
   - Zillow
   - Idealista
+  - Real-Estate
   properties:
   - type: Documentation
     url: https://docs.zenrows.com/scraper-apis/introduction
