@@ -361,22 +361,6 @@ paths:
                 $ref: '#/components/schemas/ScrapeJsonResponse'
 components:
   schemas:
-    ZenRowsError:
-      type: object
-      description: Error payload returned by the ZenRows API.
-      properties:
-        code:
-          type: string
-          description: ZenRows error code (e.g. AUTH003, REQS002, RESP005).
-        message:
-          type: string
-          description: Human-readable explanation.
-        status:
-          type: integer
-          description: HTTP status code.
-      required:
-      - code
-      - message
     ScrapeJsonResponse:
       type: object
       description: JSON envelope returned when json_response, autoparse, css_extractor, or outputs is enabled.
@@ -429,6 +413,22 @@ components:
           type: object
           description: Structured fields produced by the autoparse extractor.
           additionalProperties: true
+    ZenRowsError:
+      type: object
+      description: Error payload returned by the ZenRows API.
+      properties:
+        code:
+          type: string
+          description: ZenRows error code (e.g. AUTH003, REQS002, RESP005).
+        message:
+          type: string
+          description: Human-readable explanation.
+        status:
+          type: integer
+          description: HTTP status code.
+      required:
+      - code
+      - message
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
