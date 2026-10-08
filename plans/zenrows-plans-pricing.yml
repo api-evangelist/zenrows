@@ -460,3 +460,100 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  - metered
+  - subscription
+  units:
+  - compute
+  - data
+  - money
+  - object
+  - period
+  - request
+  plans:
+  - name: Free Trial
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - money
+    - object
+    - other
+    periods:
+    - one-time
+  - name: Developer
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - other
+    - period
+    - request
+    periods:
+    - month
+  - name: Startup
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - other
+    - period
+    - request
+    periods:
+    - month
+  - name: Business
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - other
+    - period
+    - request
+    periods:
+    - month
+  - name: Business 500
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - other
+    - period
+    - request
+    periods:
+    - month
+  - name: Business 1K–3K
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    - period
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - object
+    - period
+    periods:
+    - month
+  - name: Scraping Browser Add-on
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    - data
+    periods: []
