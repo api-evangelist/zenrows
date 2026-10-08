@@ -254,6 +254,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/zenrows/refs/heads/main/json-ld/zenrows-context.jsonld
 common:
+  - type: Plans
+    url: plans/zenrows-plans-pricing.yml
   - url: https://www.zenrows.com/blog/rss.xml
     type: BlogRSS
   - type: IssueTracker
